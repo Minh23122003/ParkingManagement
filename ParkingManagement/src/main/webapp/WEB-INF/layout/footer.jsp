@@ -5,13 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+<footer>
+    <div class="mt-4 p-5 bg-primary text-white rounded">
+        <h1>E-commerce Admin &copy; 2024</h1>
+        <p>Faculty of Information Technology, Ho Chi Minh City Open University.</p>
+    </div>
+</footer>
