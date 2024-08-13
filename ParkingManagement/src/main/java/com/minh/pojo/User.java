@@ -42,13 +42,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByAvatar", query = "SELECT u FROM User u WHERE u.avatar = :avatar")})
 public class User implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Set<Rating> ratingSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Set<Comment> commentSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Set<Order1> order1Set;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,6 +90,12 @@ public class User implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "avatar")
     private String avatar;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Set<Rating> ratingSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Set<Comment> commentSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Set<OrderParking> orderParkingSet;
 
     public User() {
     }
@@ -189,6 +188,33 @@ public class User implements Serializable {
         this.avatar = avatar;
     }
 
+    @XmlTransient
+    public Set<Rating> getRatingSet() {
+        return ratingSet;
+    }
+
+    public void setRatingSet(Set<Rating> ratingSet) {
+        this.ratingSet = ratingSet;
+    }
+
+    @XmlTransient
+    public Set<Comment> getCommentSet() {
+        return commentSet;
+    }
+
+    public void setCommentSet(Set<Comment> commentSet) {
+        this.commentSet = commentSet;
+    }
+
+    @XmlTransient
+    public Set<OrderParking> getOrderParkingSet() {
+        return orderParkingSet;
+    }
+
+    public void setOrderParkingSet(Set<OrderParking> orderParkingSet) {
+        this.orderParkingSet = orderParkingSet;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -212,33 +238,6 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.minh.pojo.User[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Set<Rating> getRatingSet() {
-        return ratingSet;
-    }
-
-    public void setRatingSet(Set<Rating> ratingSet) {
-        this.ratingSet = ratingSet;
-    }
-
-    @XmlTransient
-    public Set<Comment> getCommentSet() {
-        return commentSet;
-    }
-
-    public void setCommentSet(Set<Comment> commentSet) {
-        this.commentSet = commentSet;
-    }
-
-    @XmlTransient
-    public Set<Order1> getOrder1Set() {
-        return order1Set;
-    }
-
-    public void setOrder1Set(Set<Order1> order1Set) {
-        this.order1Set = order1Set;
     }
     
 }

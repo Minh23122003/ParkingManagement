@@ -32,18 +32,18 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author PC
  */
 @Entity
-@Table(name = "order")
+@Table(name = "order_parking")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order1 o"),
-    @NamedQuery(name = "Order1.findById", query = "SELECT o FROM Order1 o WHERE o.id = :id"),
-    @NamedQuery(name = "Order1.findByVehicleName", query = "SELECT o FROM Order1 o WHERE o.vehicleName = :vehicleName"),
-    @NamedQuery(name = "Order1.findByLicensePlates", query = "SELECT o FROM Order1 o WHERE o.licensePlates = :licensePlates"),
-    @NamedQuery(name = "Order1.findByCreatedDate", query = "SELECT o FROM Order1 o WHERE o.createdDate = :createdDate"),
-    @NamedQuery(name = "Order1.findByStatus", query = "SELECT o FROM Order1 o WHERE o.status = :status"),
-    @NamedQuery(name = "Order1.findByStartTime", query = "SELECT o FROM Order1 o WHERE o.startTime = :startTime"),
-    @NamedQuery(name = "Order1.findByEndTime", query = "SELECT o FROM Order1 o WHERE o.endTime = :endTime")})
-public class Order1 implements Serializable {
+    @NamedQuery(name = "OrderParking.findAll", query = "SELECT o FROM OrderParking o"),
+    @NamedQuery(name = "OrderParking.findById", query = "SELECT o FROM OrderParking o WHERE o.id = :id"),
+    @NamedQuery(name = "OrderParking.findByVehicleName", query = "SELECT o FROM OrderParking o WHERE o.vehicleName = :vehicleName"),
+    @NamedQuery(name = "OrderParking.findByLicensePlates", query = "SELECT o FROM OrderParking o WHERE o.licensePlates = :licensePlates"),
+    @NamedQuery(name = "OrderParking.findByCreatedDate", query = "SELECT o FROM OrderParking o WHERE o.createdDate = :createdDate"),
+    @NamedQuery(name = "OrderParking.findByStatus", query = "SELECT o FROM OrderParking o WHERE o.status = :status"),
+    @NamedQuery(name = "OrderParking.findByStartTime", query = "SELECT o FROM OrderParking o WHERE o.startTime = :startTime"),
+    @NamedQuery(name = "OrderParking.findByEndTime", query = "SELECT o FROM OrderParking o WHERE o.endTime = :endTime")})
+public class OrderParking implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,7 +66,9 @@ public class Order1 implements Serializable {
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "status")
     private String status;
     @Column(name = "start_time")
@@ -77,27 +79,28 @@ public class Order1 implements Serializable {
     private Date endTime;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
     private Set<OrderCancel> orderCancelSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    private Set<OrderDetail> orderDetailSet;
     @JoinColumn(name = "parking_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Parking parkingId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    private Set<OrderDetail> orderDetailSet;
 
-    public Order1() {
+    public OrderParking() {
     }
 
-    public Order1(Integer id) {
+    public OrderParking(Integer id) {
         this.id = id;
     }
 
-    public Order1(Integer id, String vehicleName, String licensePlates, Date createdDate) {
+    public OrderParking(Integer id, String vehicleName, String licensePlates, Date createdDate, String status) {
         this.id = id;
         this.vehicleName = vehicleName;
         this.licensePlates = licensePlates;
         this.createdDate = createdDate;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -165,15 +168,6 @@ public class Order1 implements Serializable {
         this.orderCancelSet = orderCancelSet;
     }
 
-    @XmlTransient
-    public Set<OrderDetail> getOrderDetailSet() {
-        return orderDetailSet;
-    }
-
-    public void setOrderDetailSet(Set<OrderDetail> orderDetailSet) {
-        this.orderDetailSet = orderDetailSet;
-    }
-
     public Parking getParkingId() {
         return parkingId;
     }
@@ -190,6 +184,15 @@ public class Order1 implements Serializable {
         this.userId = userId;
     }
 
+    @XmlTransient
+    public Set<OrderDetail> getOrderDetailSet() {
+        return orderDetailSet;
+    }
+
+    public void setOrderDetailSet(Set<OrderDetail> orderDetailSet) {
+        this.orderDetailSet = orderDetailSet;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -200,10 +203,10 @@ public class Order1 implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order1)) {
+        if (!(object instanceof OrderParking)) {
             return false;
         }
-        Order1 other = (Order1) object;
+        OrderParking other = (OrderParking) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -212,7 +215,7 @@ public class Order1 implements Serializable {
 
     @Override
     public String toString() {
-        return "com.minh.pojo.Order1[ id=" + id + " ]";
+        return "com.minh.pojo.OrderParking[ id=" + id + " ]";
     }
     
 }

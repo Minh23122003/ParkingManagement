@@ -14,16 +14,31 @@
             <c:url value="/" var="action" />
             <form action="${action}">
                 <div class="mb-3 mt-3">
-                    <label for="kw" class="form-label">Từ khóa:</label>
-                    <input type="text" class="form-control" id="kw" placeholder="Từ khóa..." name="q">
+                    <label for="address" class="form-label">Địa chỉ</label>
+                    <input type="text" class="form-control" id="address" placeholder="" name="address">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="fromPrice" class="form-label">Từ giá (VNĐ):</label>
-                    <input type="number" class="form-control" id="fromPrice" placeholder="Từ giá..." name="fromPrice">
+                    <label for="minPrice" class="form-label">Từ giá (VNĐ):</label>
+                    <input type="number" class="form-control" id="minPrice" placeholder="Từ giá..." name="minPrice">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="toPrice" class="form-label">Đến giá (VNĐ):</label>
-                    <input type="number" class="form-control" id="toPrice" placeholder="Đến giá..." name="toPrice">
+                    <label for="maxPrice" class="form-label">Đến giá (VNĐ):</label>
+                    <input type="number" class="form-control" id="maxPrice" placeholder="Đến giá..." name="maxPrice">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="browser" class="form-label">Trạng thái:</label>
+                    <form:select class="form-select" path="statusId" >
+                        <c:forEach items="${status}" var="s">
+                            <c:choose>
+                                <c:when test="${s.id == 1}">
+                                    <option value="${s.id}" selected>${s.name}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${s.id}">${s.name}</option>
+                                </c:otherwise>
+                            </c:choose>           
+                        </c:forEach>
+                    </form:select>
                 </div>
                 <div class="mb-3 mt-3">
                     <button class="btn btn-info" type="submit">Tìm kiếm</button>
@@ -31,7 +46,7 @@
             </form>
         </div>
         <div class="col-md-10 col-12">
-            <a class="btn btn-info m-1" href="<c:url value="/products" />">Thêm sản phẩm</a>
+            <a class="btn btn-info m-1" href="<c:url value="/parkings" />">Thêm bãi đỗ xe</a>
             <table class="table table-striped">
                 <tr>
                     <th>Id</th>
@@ -50,12 +65,12 @@
                         <td>${p.quantity}</td>
                         <td>${p.dailyPrice} VND</td>
                         <td>${p.nightPrice} VND</td>
-                        <td>${p.status}</td>
+                        <td>${p.statusId.name}</td>
                         <td>${p.note}</td>
                         <td>
-                            <c:url value="/products/${p.id}" var="u" />
+                            <c:url value="/parkings/${p.id}" var="u" />
                             <a href="${u}" class="btn btn-success">&orarr;</a>
-                            
+
                             <c:url value="/api/parkings/${p.id}" var="uD" />
                             <button onclick="deleteParking('${uD}', ${p.id})" class="btn btn-danger">&times;</button>
                         </td>

@@ -4,35 +4,37 @@
  */
 package com.minh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author PC
  */
 @Entity
-@Table(name = "order_detail")
+@Table(name = "status")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "OrderDetail.findAll", query = "SELECT o FROM OrderDetail o"),
-    @NamedQuery(name = "OrderDetail.findById", query = "SELECT o FROM OrderDetail o WHERE o.id = :id"),
-    @NamedQuery(name = "OrderDetail.findByTotal", query = "SELECT o FROM OrderDetail o WHERE o.total = :total"),
-    @NamedQuery(name = "OrderDetail.findByMethodPay", query = "SELECT o FROM OrderDetail o WHERE o.methodPay = :methodPay")})
-public class OrderDetail implements Serializable {
+    @NamedQuery(name = "Status.findAll", query = "SELECT s FROM Status s"),
+    @NamedQuery(name = "Status.findById", query = "SELECT s FROM Status s WHERE s.id = :id"),
+    @NamedQuery(name = "Status.findByName", query = "SELECT s FROM Status s WHERE s.name = :name")})
+public class Status implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,28 +44,23 @@ public class OrderDetail implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "total")
-    private int total;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "method_pay")
-    private String methodPay;
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private OrderParking orderId;
+    @Size(min = 1, max = 100)
+    @Column(name = "name")
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusId")
+    @JsonIgnore
+    private Set<Parking> parkingSet;
 
-    public OrderDetail() {
+    public Status() {
     }
 
-    public OrderDetail(Integer id) {
+    public Status(Integer id) {
         this.id = id;
     }
 
-    public OrderDetail(Integer id, int total, String methodPay) {
+    public Status(Integer id, String name) {
         this.id = id;
-        this.total = total;
-        this.methodPay = methodPay;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -74,28 +71,21 @@ public class OrderDetail implements Serializable {
         this.id = id;
     }
 
-    public int getTotal() {
-        return total;
+    public String getName() {
+        return name;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getMethodPay() {
-        return methodPay;
+    @XmlTransient
+    public Set<Parking> getParkingSet() {
+        return parkingSet;
     }
 
-    public void setMethodPay(String methodPay) {
-        this.methodPay = methodPay;
-    }
-
-    public OrderParking getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(OrderParking orderId) {
-        this.orderId = orderId;
+    public void setParkingSet(Set<Parking> parkingSet) {
+        this.parkingSet = parkingSet;
     }
 
     @Override
@@ -108,10 +98,10 @@ public class OrderDetail implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof OrderDetail)) {
+        if (!(object instanceof Status)) {
             return false;
         }
-        OrderDetail other = (OrderDetail) object;
+        Status other = (Status) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -120,7 +110,7 @@ public class OrderDetail implements Serializable {
 
     @Override
     public String toString() {
-        return "com.minh.pojo.OrderDetail[ id=" + id + " ]";
+        return "com.minh.pojo.Status[ id=" + id + " ]";
     }
     
 }

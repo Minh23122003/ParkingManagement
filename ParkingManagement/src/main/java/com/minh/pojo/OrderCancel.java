@@ -55,7 +55,7 @@ public class OrderCancel implements Serializable {
     private Date date;
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Order1 orderId;
+    private OrderParking orderId;
 
     public OrderCancel() {
     }
@@ -94,11 +94,11 @@ public class OrderCancel implements Serializable {
         this.date = date;
     }
 
-    public Order1 getOrderId() {
+    public OrderParking getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Order1 orderId) {
+    public void setOrderId(OrderParking orderId) {
         this.orderId = orderId;
     }
 

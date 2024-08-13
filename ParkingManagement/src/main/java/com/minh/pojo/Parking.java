@@ -4,6 +4,7 @@
  */
 package com.minh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -13,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,16 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Parking.findByQuantity", query = "SELECT p FROM Parking p WHERE p.quantity = :quantity"),
     @NamedQuery(name = "Parking.findByDailyPrice", query = "SELECT p FROM Parking p WHERE p.dailyPrice = :dailyPrice"),
     @NamedQuery(name = "Parking.findByNightPrice", query = "SELECT p FROM Parking p WHERE p.nightPrice = :nightPrice"),
-    @NamedQuery(name = "Parking.findByStatus", query = "SELECT p FROM Parking p WHERE p.status = :status"),
     @NamedQuery(name = "Parking.findByNote", query = "SELECT p FROM Parking p WHERE p.note = :note")})
 public class Parking implements Serializable {
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parkingId")
-    private Set<Rating> ratingSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parkingId")
-    private Set<Comment> commentSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parkingId")
-    private Set<Order1> order1Set;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -70,14 +65,21 @@ public class Parking implements Serializable {
     @NotNull
     @Column(name = "night_price")
     private int nightPrice;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "status")
-    private String status;
     @Size(max = 255)
     @Column(name = "note")
     private String note;
+    @JoinColumn(name = "status_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Status statusId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parkingId")
+    @JsonIgnore
+    private Set<Rating> ratingSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parkingId")
+    @JsonIgnore
+    private Set<Comment> commentSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parkingId")
+    @JsonIgnore
+    private Set<OrderParking> orderParkingSet;
 
     public Parking() {
     }
@@ -86,13 +88,12 @@ public class Parking implements Serializable {
         this.id = id;
     }
 
-    public Parking(Integer id, String address, int quantity, int dailyPrice, int nightPrice, String status) {
+    public Parking(Integer id, String address, int quantity, int dailyPrice, int nightPrice) {
         this.id = id;
         this.address = address;
         this.quantity = quantity;
         this.dailyPrice = dailyPrice;
         this.nightPrice = nightPrice;
-        this.status = status;
     }
 
     public Integer getId() {
@@ -135,20 +136,47 @@ public class Parking implements Serializable {
         this.nightPrice = nightPrice;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getNote() {
         return note;
     }
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Status getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Status statusId) {
+        this.statusId = statusId;
+    }
+
+    @XmlTransient
+    public Set<Rating> getRatingSet() {
+        return ratingSet;
+    }
+
+    public void setRatingSet(Set<Rating> ratingSet) {
+        this.ratingSet = ratingSet;
+    }
+
+    @XmlTransient
+    public Set<Comment> getCommentSet() {
+        return commentSet;
+    }
+
+    public void setCommentSet(Set<Comment> commentSet) {
+        this.commentSet = commentSet;
+    }
+
+    @XmlTransient
+    public Set<OrderParking> getOrderParkingSet() {
+        return orderParkingSet;
+    }
+
+    public void setOrderParkingSet(Set<OrderParking> orderParkingSet) {
+        this.orderParkingSet = orderParkingSet;
     }
 
     @Override
@@ -174,33 +202,6 @@ public class Parking implements Serializable {
     @Override
     public String toString() {
         return "com.minh.pojo.Parking[ id=" + id + " ]";
-    }
-
-    @XmlTransient
-    public Set<Rating> getRatingSet() {
-        return ratingSet;
-    }
-
-    public void setRatingSet(Set<Rating> ratingSet) {
-        this.ratingSet = ratingSet;
-    }
-
-    @XmlTransient
-    public Set<Comment> getCommentSet() {
-        return commentSet;
-    }
-
-    public void setCommentSet(Set<Comment> commentSet) {
-        this.commentSet = commentSet;
-    }
-
-    @XmlTransient
-    public Set<Order1> getOrder1Set() {
-        return order1Set;
-    }
-
-    public void setOrder1Set(Set<Order1> order1Set) {
-        this.order1Set = order1Set;
     }
     
 }

@@ -9,6 +9,8 @@
     <class>com.minh.pojo.Comment</class>
     <class>com.minh.pojo.OrderCancel</class>
     <class>com.minh.pojo.Order1</class>
+    <class>com.minh.pojo.OrderParking</class>
+    <class>com.minh.pojo.Status</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/parkingdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

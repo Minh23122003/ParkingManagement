@@ -6,6 +6,7 @@ package com.minh.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.minh.formatters.StatusFormatter;
 //import com.dht.formatters.CategoryFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -90,5 +91,10 @@ public class WebAppContextConfigs implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
+    }
+    
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new StatusFormatter());
     }
 }
