@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -50,22 +51,25 @@ public class Parking implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1, max = 100, message = "{parking.address.errMsg}")
     @Column(name = "address")
     private String address;
     @Basic(optional = false)
     @NotNull
+    @Min(value = 1, message = "{parking.quantity.errMsg}")
     @Column(name = "quantity")
     private int quantity;
     @Basic(optional = false)
     @NotNull
+    @Min(value = 3000, message = "{parking.dailyPrice.errMsg}")
     @Column(name = "daily_price")
     private int dailyPrice;
     @Basic(optional = false)
     @NotNull
+    @Min(value = 6000, message = "{parking.nightPrice.errMsg}")
     @Column(name = "night_price")
     private int nightPrice;
-    @Size(max = 255)
+    @Size(max = 255, message = "{parking.note.errMsg}")
     @Column(name = "note")
     private String note;
     @JoinColumn(name = "status_id", referencedColumnName = "id")
