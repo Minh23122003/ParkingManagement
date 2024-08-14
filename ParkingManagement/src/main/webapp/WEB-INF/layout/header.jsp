@@ -20,9 +20,10 @@
                     <a class="nav-link" href="<c:url value="/" />">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/stats" />">
-                        Thống kê
-                    </a>
+                    <a class="nav-link" href="<c:url value="/statuses" />">Trạng thái</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/stats" />">Thống kê</a>
                 </li>
                 <s:authorize access="hasAnyRole('USER', 'ADMIN')">
                     <li class="nav-item">

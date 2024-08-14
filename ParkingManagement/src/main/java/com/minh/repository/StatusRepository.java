@@ -13,4 +13,7 @@ import java.util.List;
  */
 public interface StatusRepository {
     List<Status> getStatus();
+    void addOrUpdate(Status s);
+    Status getStatusById(int id);
+    void deleteStatus(int id);
 }

@@ -26,19 +26,12 @@
                     <input type="number" class="form-control" id="maxPrice" placeholder="Đến giá..." name="maxPrice">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="browser" class="form-label">Trạng thái:</label>
-                    <form:select class="form-select" path="statusId" >
+                    <label for="statusId" class="form-label">Trạng thái:</label>
+                    <select id="statusId" name="statusId" class="form-select" >
                         <c:forEach items="${status}" var="s">
-                            <c:choose>
-                                <c:when test="${s.id == 1}">
-                                    <option value="${s.id}" selected>${s.name}</option>
-                                </c:when>
-                                <c:otherwise>
-                                    <option value="${s.id}">${s.name}</option>
-                                </c:otherwise>
-                            </c:choose>           
+                            <option value="${s.id}" >${s.name}</option>
                         </c:forEach>
-                    </form:select>
+                    </select>
                 </div>
                 <div class="mb-3 mt-3">
                     <button class="btn btn-info" type="submit">Tìm kiếm</button>

@@ -24,5 +24,20 @@ public class StatusServiceImplement implements StatusService{
     public List<Status> getStatus() {
         return this.statusRepository.getStatus();
     }
+
+    @Override
+    public void addOrUpdate(Status s) {
+        this.statusRepository.addOrUpdate(s);
+    }
+
+    @Override
+    public Status getStatusById(int id) {
+        return this.statusRepository.getStatusById(id);
+    }
+
+    @Override
+    public void deleteStatus(int id) {
+        this.statusRepository.deleteStatus(id);
+    }
     
 }

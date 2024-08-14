@@ -30,5 +30,28 @@ public class StatusRepositoryImplement implements StatusRepository{
         Query q = s.createQuery("From Status");
         return q.getResultList();
     }
+
+    @Override
+    public Status getStatusById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(Status.class, id);
+    }
+
+    @Override
+    public void deleteStatus(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Status status = this.getStatusById(id);
+        s.delete(status);
+    }
+    
+    @Override
+    public void addOrUpdate(Status status) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (status.getId() != null) {
+            s.update(status);
+        } else {
+            s.save(status);
+        }
+    }
     
 }
