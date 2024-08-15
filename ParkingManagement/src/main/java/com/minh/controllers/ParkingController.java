@@ -33,15 +33,17 @@ public class ParkingController {
     
     @PostMapping("/parkings")
     public String createView(Model model, @ModelAttribute(value = "parking") @Valid Parking p, BindingResult rs) {
-        if (rs.hasErrors())
+        if (rs.hasErrors()){
             return "parkings";
+        }
+            
         
         try {
             this.parkingService.addOrUpdate(p);
             
             return "redirect:/";
         } catch (Exception ex) {
-            model.addAttribute("errMsg", ex.getMessage());
+            model.addAttribute("errMsg", "sai");
         }
         
         return "parkings";

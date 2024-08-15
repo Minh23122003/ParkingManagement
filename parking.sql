@@ -75,3 +75,5 @@ create table order_cancel (
     `date` datetime not null,
     foreign key (order_id) references order_parking(id)
 ) engine=InnoDB;
+
+INSERT INTO `parkingdb`.`user` (`first_name`, `last_name`, `email`, `phone`, `username`, `password`, `user_role`, `avatar`) VALUES ('dong', 'minh', 'minh@gmail.com', '0123456789', 'admin', '$2a$10$5X9k5N1sTc1/CjVH5XJoje3QMYijH3ETpgkox00R0MdPaJPPrf7wO', 'ROLE_ADMIN', 'https://res.cloudinary.com/dxxwcby8l/image/upload/v1692330009/vuyk886cdgjykoi6qs3f.png');

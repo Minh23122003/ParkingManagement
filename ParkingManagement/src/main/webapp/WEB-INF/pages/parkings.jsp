@@ -10,12 +10,9 @@
 
 <h1 class="text-center text-primary mt-1">Quản trị bãi đỗ xe</h1>
 <c:url value="/parkings" var="action" />
-<c:if test="${errMsg != null}">
-    <div class="alert alert-danger">
-        ${errMsg}
-    </div>
-</c:if>
+
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="parking">
+    <form:errors path="*" element="div" cssClass="text-danger"/>
     <div class="mb-3 mt-3">
         <label for="address" class="form-label">Địa chỉ bãi đỗ xe:</label>
         <form:input path="address" type="text" class="form-control" id="address" placeholder="" name="address" />      

@@ -9,12 +9,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:url value="/statuses" var="action" />
-<c:if test="${errMsg != null}">
-    <div class="alert alert-danger">
-        ${errMsg}
-    </div>
-</c:if>
+
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="statusDetails">
+    <form:errors path="*" element="div" cssClass="text-danger"/>
     <div class="mb-3 mt-3">
         <label for="name" class="form-label">Tên trạng thái:</label>
         <form:input path="name" type="text" class="form-control" id="name" placeholder="" name="name" />      

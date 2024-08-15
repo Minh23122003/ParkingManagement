@@ -33,7 +33,7 @@ public class StatusController {
     @PostMapping("/statuses")
     public String createView(Model model, @ModelAttribute(value = "statusDetails") @Valid Status s, BindingResult rs) {
         if (rs.hasErrors())
-            return "statuses";
+            return "statusDetails";
         
         try {
             this.statusService.addOrUpdate(s);
@@ -43,7 +43,7 @@ public class StatusController {
             model.addAttribute("errMsg", ex.getMessage());
         }
         
-        return "statuses";
+        return "statusDetails";
     }
     
     @GetMapping("/statuses/{statusId}")

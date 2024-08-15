@@ -26,7 +26,7 @@
                 <c:url value="/statuses/${s.id}" var="u" />
                 <a href="${u}" class="btn btn-success">&orarr;</a>
 
-                <c:url value="/api/statuses/${s.id}" var="uD" />
+                <c:url value="/api/status/${s.id}" var="uD" />
                 <button onclick="deleteStatus('${uD}', ${s.id})" class="btn btn-danger">&times;</button>
             </td>
         </tr>
