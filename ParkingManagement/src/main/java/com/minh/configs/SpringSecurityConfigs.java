@@ -28,7 +28,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {
     "com.minh.controllers",
     "com.minh.repository",
-    "com.minh.service"
+    "com.minh.service",
+    "com.minh.components"
 })
 public class SpringSecurityConfigs extends WebSecurityConfigurerAdapter {
 

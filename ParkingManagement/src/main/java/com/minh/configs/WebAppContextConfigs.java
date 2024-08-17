@@ -35,7 +35,8 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {
     "com.minh.controllers",
     "com.minh.repository",
-    "com.minh.service"
+    "com.minh.service",
+    "com.minh.components"
 })
 @Order(1)
 public class WebAppContextConfigs implements WebMvcConfigurer {
