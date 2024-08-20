@@ -23,12 +23,12 @@ const Login = () => {
             console.info(res.data)
             cookie.save("access-token", res.data)
 
-            let user = await authAPIs().get(endpoints['current-user']);
-            cookie.save("user", user.data);
+            // let user = await authAPIs().get(endpoints['current-user']);
+            // cookie.save("user", user.data);
 
             dispatch({
                 "type": "login",
-                "payload": user.data
+                "payload": 1
             });
        } catch(ex) {
            console.error(ex);

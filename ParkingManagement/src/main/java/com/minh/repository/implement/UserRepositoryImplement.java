@@ -7,6 +7,10 @@ package com.minh.repository.implement;
 import com.minh.pojo.User;
 import com.minh.repository.UserRepository;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -20,13 +24,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserRepositoryImplement implements UserRepository{
+public class UserRepositoryImplement implements UserRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
     @Autowired
     private BCryptPasswordEncoder passEncoder;
-    
+
     @Override
     public User getUserByUsername(String username) {
         Session s = this.factory.getObject().getCurrentSession();
@@ -34,12 +38,13 @@ public class UserRepositoryImplement implements UserRepository{
         q.setParameter("username", username);
 
         return (User) q.getSingleResult();
+        
     }
 
     @Override
     public boolean authUser(String username, String password) {
-        User  u = this.getUserByUsername(username);
-        
+        User u = this.getUserByUsername(username);
+
         return this.passEncoder.matches(password, u.getPassword());
     }
 
@@ -47,8 +52,8 @@ public class UserRepositoryImplement implements UserRepository{
     public User addUser(User user) {
         Session s = this.factory.getObject().getCurrentSession();
         s.save(user);
-        
+
         return user;
     }
-    
+
 }

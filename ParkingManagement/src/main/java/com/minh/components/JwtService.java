@@ -47,7 +47,7 @@ public class JwtService {
         return token;
     }
 
-    private JWTClaimsSet getClaimsFromToken(String token) throws ParseException {
+    private JWTClaimsSet getClaimsFromToken(String token) {
         JWTClaimsSet claims = null;
         try {
             SignedJWT signedJWT = SignedJWT.parse(token);
@@ -61,7 +61,7 @@ public class JwtService {
         return claims;
     }
     
-    private Date getExpirationDateFromToken(String token) throws ParseException {
+    private Date getExpirationDateFromToken(String token) {
         JWTClaimsSet claims = getClaimsFromToken(token);
         Date expiration = claims.getExpirationTime();
         return expiration;
@@ -78,12 +78,12 @@ public class JwtService {
         return username;
     }
 
-    private Boolean isTokenExpired(String token) throws ParseException {
+    private Boolean isTokenExpired(String token) {
         Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
 
-    public Boolean validateTokenLogin(String token) throws ParseException {
+    public Boolean validateTokenLogin(String token) {
         if (token == null || token.trim().length() == 0) {
             return false;
         }

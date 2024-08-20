@@ -1,7 +1,7 @@
 import axios from "axios"
 import cookie from "react-cookies"
 
-const BASE_URL = 'http://localhost:8080/ParkingManagement/api/'
+const BASE_URL = 'http://localhost:8080/ParkingManagement/api'
 
 export const endpoints = {
     'parkings': '/parkings',
