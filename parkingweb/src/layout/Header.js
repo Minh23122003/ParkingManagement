@@ -5,31 +5,9 @@ import { MyCartContext, MyDispatchContext, MyUserContext } from '../App';
 import APIs, { endpoints } from '../configs/APIs';
 
 const Header = () => {
-    const [parkings, setParkings] = useState([]);
     const user = useContext(MyUserContext)
     const dispatch = useContext(MyDispatchContext);
-    const [kw, setKw] = useState("");
     const nav = useNavigate();
-    // const [cartCounter, ] = useContext(MyCartContext);
-
-    const loadParkings = async () => {
-        try {
-          let res = await APIs.get(endpoints['parkings']);
-          setParkings(res.data);
-        } catch (ex) {
-          console.error(ex);
-        }
-      }
-
-    useEffect(() => {
-        loadParkings();
-      }, []);
-
-    const submit = (e) => {
-        e.preventDefault();
-
-        nav(`/?kw=${kw}`);
-    }
 
     return (
         <>

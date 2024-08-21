@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ParkingRepositoryImplement implements ParkingRepository{
 
-    private static final int PAGE_SIZE = 4;
+    private static final int PAGE_SIZE = 2;
     @Autowired
     private LocalSessionFactoryBean factory;
     
@@ -46,31 +46,46 @@ public class ParkingRepositoryImplement implements ParkingRepository{
             String address = params.get("address");
             if (address != null && !address.isEmpty()){
                 Predicate p1 = b.like(root.get("address"), String.format("%%%s%%", address));
-                q.where(p1);
+//                q.where(p1);
             }
             
             String minPrice = params.get("minPrice");
             if (minPrice != null && !minPrice.isEmpty()) {
                 Predicate p2 = b.or(b.greaterThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(minPrice)), 
                         b.greaterThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(minPrice)));
-                q.where(p2);
+//                q.where(p2);
             }
 
             String maxPrice = params.get("maxPrice");
             if (maxPrice != null && !maxPrice.isEmpty()) {
                 Predicate p3 =b.or(b.lessThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(maxPrice)),
                         b.lessThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(maxPrice)));
-                q.where(p3);
+//                q.where(p3);
             }
             
             String statusId = params.get("statusId");
             if (statusId != null && !statusId.isEmpty()) {
                 Predicate p4 = b.equal(root.get("statusId"), Integer.parseInt(statusId));
-                q.where(p4);
+//                q.where(p4);
+            }
+            
+            for(int i=0;i<predicates.size();i++){
+                q.where(predicates.get(i));
             }
         }
         
         Query query = s.createQuery(q);
+
+        if (params != null) {
+            String page = params.get("page");
+            if (page != null && !page.isEmpty()) {
+                int p = Integer.parseInt(page);
+                int start = (p - 1) * PAGE_SIZE;
+
+                query.setFirstResult(start);
+                query.setMaxResults(PAGE_SIZE);
+            }
+        }
         return query.getResultList();
     }
     
