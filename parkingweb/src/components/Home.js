@@ -9,8 +9,8 @@ const Home = () => {
     const [q] = useSearchParams()
     const [page, setPage] = useState(1)
     const [address, setAddress] = useState("")
-    const [minPrice, setMinPrice] = useState(null)
-    const [maxPrice, setMaxPrice] = useState(null)
+    const [minPrice, setMinPrice] = useState("")
+    const [maxPrice, setMaxPrice] = useState("")
     const [statusId, setStatusId] = useState(1)
     const [status, setStatus] = useState([])
     const nav = useNavigate();
@@ -44,7 +44,8 @@ const Home = () => {
             }
 
             let res = await APIs.get(url)
-
+            console.info(parkings)
+            console.info(page)
             if (page === 1)
                 setParkings(res.data)
             else
@@ -64,7 +65,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        loadParkings()
+        loadParkings();
     }, [page, q])
 
     useEffect(() => {
@@ -96,7 +97,7 @@ const Home = () => {
                 </Col>
                 <Col xs="auto" >
                     <Form.Control
-                        type="number"
+                        type="text"
                         placeholder="Tìm giá thấp nhất..."
                         className=" mr-sm-2"
                         value={minPrice}
@@ -105,7 +106,7 @@ const Home = () => {
                 </Col>
                 <Col xs="auto" >
                     <Form.Control
-                        type="number"
+                        type="text"
                         placeholder="Tìm giá cao nhất..."
                         className=" mr-sm-2"
                         value={maxPrice}
@@ -114,6 +115,7 @@ const Home = () => {
                 </Col>
                 <Col xs="auto">
                     <Form.Select onChange={e => setStatusId(e.target.value)}>
+                    <option key={0} value={""}>Tất cả</option>
                         {status.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                     </Form.Select>
                 </Col>
@@ -152,7 +154,7 @@ const Home = () => {
                 </Table>
 
                 <div className="mt-2 text-center mb-1">
-                    <Button onClick={loadMore} variant="primary">Xem thêm</Button>
+                    <Button  onClick={loadMore} variant="primary">Xem thêm</Button>
                 </div>
         </>
     );
