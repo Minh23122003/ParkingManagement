@@ -18,12 +18,20 @@
                     <input type="text" class="form-control" id="address" placeholder="" name="address">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="minPrice" class="form-label">Từ giá (VNĐ):</label>
-                    <input type="number" class="form-control" id="minPrice" placeholder="Từ giá..." name="minPrice">
+                    <label for="minPrice" class="form-label">Từ giá (VNĐ)(Ngày):</label>
+                    <input type="number" class="form-control" id="minPriceDay" placeholder="Từ giá..." name="minPriceDay">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="maxPrice" class="form-label">Đến giá (VNĐ):</label>
-                    <input type="number" class="form-control" id="maxPrice" placeholder="Đến giá..." name="maxPrice">
+                    <label for="maxPrice" class="form-label">Đến giá (VNĐ)(Ngày):</label>
+                    <input type="number" class="form-control" id="maxPriceDay" placeholder="Đến giá..." name="maxPriceDay">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="minPrice" class="form-label">Từ giá (VNĐ)(Ðêm):</label>
+                    <input type="number" class="form-control" id="minPriceNight" placeholder="Từ giá..." name="minPriceNight">
+                </div>
+                <div class="mb-3 mt-3">
+                    <label for="maxPrice" class="form-label">Đến giá (VNĐ)(Ðêm):</label>
+                    <input type="number" class="form-control" id="maxPriceNight" placeholder="Đến giá..." name="maxPriceNight">
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="statusId" class="form-label">Trạng thái:</label>
@@ -36,6 +44,11 @@
                 <div class="mb-3 mt-3">
                     <button class="btn btn-info" type="submit">Tìm kiếm</button>
                 </div>
+                <div>
+                <c:url value="/" var="u" />
+                            <a href="${u}" class="btn btn-success">&orarr;</a>    
+                </div>
+                
             </form>
         </div>
         <div class="col-md-10 col-12">

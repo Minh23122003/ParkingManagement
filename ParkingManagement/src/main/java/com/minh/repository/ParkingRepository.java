@@ -7,6 +7,7 @@ package com.minh.repository;
 import com.minh.pojo.Parking;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.criteria.Predicate;
 
 /**
  *
@@ -17,6 +18,5 @@ public interface ParkingRepository {
     void addOrUpdate(Parking p);
     Parking getParkingById(int id);
     void deleteParking(int id);
-    
     
 }

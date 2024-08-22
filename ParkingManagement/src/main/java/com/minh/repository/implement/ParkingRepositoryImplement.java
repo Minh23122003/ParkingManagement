@@ -31,6 +31,8 @@ public class ParkingRepositoryImplement implements ParkingRepository{
     private static final int PAGE_SIZE = 4;
     @Autowired
     private LocalSessionFactoryBean factory;
+    @Autowired
+    private ParkingRepository parkingRepo;
     
     @Override
     public List<Parking> getParkings(Map<String, String> params) {
@@ -46,28 +48,39 @@ public class ParkingRepositoryImplement implements ParkingRepository{
             String address = params.get("address");
             if (address != null && !address.isEmpty()){
                 Predicate p1 = b.like(root.get("address"), String.format("%%%s%%", address));
-                q.where(p1);
+                predicates.add(p1);
             }
             
-            String minPrice = params.get("minPrice");
-            if (minPrice != null && !minPrice.isEmpty()) {
-                Predicate p2 = b.or(b.greaterThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(minPrice)), 
-                        b.greaterThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(minPrice)));
-                q.where(p2);
+            String minPriceDay = params.get("minPriceDay");
+            if (minPriceDay != null && !minPriceDay.isEmpty()) {
+                Predicate p2 = b.greaterThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(minPriceDay));
+                predicates.add(p2);
+            }
+            
+            String minPriceNight = params.get("minPriceNight");
+            if (minPriceNight != null && !minPriceNight.isEmpty()) {
+                Predicate p3 = b.greaterThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(minPriceNight));
+                predicates.add(p3);
             }
 
-            String maxPrice = params.get("maxPrice");
-            if (maxPrice != null && !maxPrice.isEmpty()) {
-                Predicate p3 =b.or(b.lessThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(maxPrice)),
-                        b.lessThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(maxPrice)));
-                q.where(p3);
+            String maxPriceDay = params.get("maxPriceDay");
+            if (maxPriceDay != null && !maxPriceDay.isEmpty()) {
+                Predicate p4 =b.lessThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(maxPriceDay));
+                predicates.add(p4);
+            }
+
+            String maxPriceNight = params.get("maxPriceNight");
+            if (maxPriceNight != null && !maxPriceNight.isEmpty()) {
+                Predicate p5 =b.lessThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(maxPriceNight));
+                predicates.add(p5);
             }
             
             String statusId = params.get("statusId");
             if (statusId != null && !statusId.isEmpty()) {
-                Predicate p4 = b.equal(root.get("statusId"), Integer.parseInt(statusId));
-                q.where(p4);
+                Predicate p6 = b.equal(root.get("statusId"), Integer.parseInt(statusId));
+                predicates.add(p6);
             }
+            q.where(predicates.toArray(new Predicate[0]));
         }
         
         Query query = s.createQuery(q);
@@ -97,6 +110,5 @@ public class ParkingRepositoryImplement implements ParkingRepository{
         }
     }
 
-
-    
+   
 }

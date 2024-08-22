@@ -9,6 +9,7 @@ import com.minh.repository.ParkingRepository;
 import com.minh.service.ParkingService;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.criteria.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,6 @@ public class ParkingServiceImplement implements ParkingService{
     public void deleteParking(int id) {
         this.parkingRepo.deleteParking(id);
     }
+
     
 }

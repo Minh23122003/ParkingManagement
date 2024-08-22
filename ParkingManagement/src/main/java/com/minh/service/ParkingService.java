@@ -7,6 +7,7 @@ package com.minh.service;
 import com.minh.pojo.Parking;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.criteria.Predicate;
 
 /**
  *

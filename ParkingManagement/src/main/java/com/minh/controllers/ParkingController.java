@@ -54,4 +54,5 @@ public class ParkingController {
         model.addAttribute("parking", this.parkingService.getParkingById(id));
         return "parkings";
     }
+    
 }
