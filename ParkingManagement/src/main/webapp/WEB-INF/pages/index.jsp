@@ -18,12 +18,12 @@
                     <input type="text" class="form-control" id="address" placeholder="" name="address">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="minPrice" class="form-label">Từ giá (VNĐ):</label>
-                    <input type="number" class="form-control" id="minPrice" placeholder="Từ giá..." name="minPrice">
+                    <label for="dailyPrice" class="form-label">Giá ngày (VNÐ):</label>
+                    <input type="number" class="form-control" id="dailyPrice" placeholder="Giá ngày..." name="dailyPrice">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="maxPrice" class="form-label">Đến giá (VNĐ):</label>
-                    <input type="number" class="form-control" id="maxPrice" placeholder="Đến giá..." name="maxPrice">
+                    <label for="nightPrice" class="form-label">Giá dêm (VNĐ):</label>
+                    <input type="number" class="form-control" id="nightPrice" placeholder="Giá dêm..." name="nightPrice">
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="statusId" class="form-label">Trạng thái:</label>

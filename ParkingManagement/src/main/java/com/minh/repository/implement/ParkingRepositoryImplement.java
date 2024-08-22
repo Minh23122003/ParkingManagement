@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ParkingRepositoryImplement implements ParkingRepository{
 
-    private static final int PAGE_SIZE = 2;
+    private static final int PAGE_SIZE = 4;
     @Autowired
     private LocalSessionFactoryBean factory;
     
@@ -46,32 +46,31 @@ public class ParkingRepositoryImplement implements ParkingRepository{
             String address = params.get("address");
             if (address != null && !address.isEmpty()){
                 Predicate p1 = b.like(root.get("address"), String.format("%%%s%%", address));
-                q.where(p1);
+                predicates.add(p1);
+//                q.where(p1);
             }
             
-            String minPrice = params.get("minPrice");
-            if (minPrice != null && !minPrice.isEmpty()) {
-                Predicate p2 = b.or(b.greaterThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(minPrice)), 
-                        b.greaterThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(minPrice)));
-                q.where(p2);
+            String nightPrice = params.get("nightPrice");
+            if (nightPrice != null && !nightPrice.isEmpty()) {
+                Predicate p2 = b.equal(root.get("nightPrice"), Double.parseDouble(nightPrice));
+                predicates.add(p2);
+//                q.where(p2);
             }
 
-            String maxPrice = params.get("maxPrice");
-            if (maxPrice != null && !maxPrice.isEmpty()) {
-                Predicate p3 =b.or(b.lessThanOrEqualTo(root.get("dailyPrice"), Double.parseDouble(maxPrice)),
-                        b.lessThanOrEqualTo(root.get("nightPrice"), Double.parseDouble(maxPrice)));
-                q.where(p3);
+            String dailyPrice = params.get("dailyPrice");
+            if (dailyPrice != null && !dailyPrice.isEmpty()) {
+                Predicate p3 = b.equal(root.get("dailyPrice"), Double.parseDouble(dailyPrice));
+                predicates.add(p3);
+//                q.where(p3);
             }
             
             String statusId = params.get("statusId");
             if (statusId != null && !statusId.isEmpty()) {
                 Predicate p4 = b.equal(root.get("statusId"), Integer.parseInt(statusId));
-                q.where(p4);
+                predicates.add(p4);
+//                q.where(p4);
             }
-//            q.where(predicates.toArray(new Predicate[predicates.size()]));
-//            for(int i=0;i<predicates.size();i++){
-//                q.where(predicates.get(i));
-//            }
+            q.where(predicates.toArray(new Predicate[0]));
         }
         
         Query query = s.createQuery(q);

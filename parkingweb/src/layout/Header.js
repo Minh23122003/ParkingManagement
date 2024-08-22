@@ -3,11 +3,16 @@ import { Badge, Button, Col, Container, Form, Image, Nav, Navbar, NavDropdown, R
 import { Link, useNavigate } from 'react-router-dom';
 import { MyCartContext, MyDispatchContext, MyUserContext } from '../App';
 import APIs, { endpoints } from '../configs/APIs';
+import cookie from "react-cookies";
 
 const Header = () => {
     const user = useContext(MyUserContext)
+    // const user = cookie.load("user")
     const dispatch = useContext(MyDispatchContext);
     const nav = useNavigate();
+    useEffect(()=>{
+        console.info(user)
+    })
 
     return (
         <>

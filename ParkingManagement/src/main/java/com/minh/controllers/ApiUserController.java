@@ -60,7 +60,7 @@ public class ApiUserController {
     @GetMapping(path = "/current-user", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
     public ResponseEntity<User> details(Principal user) {
-        User u = this.userService.getUserByUsername(user.getName());
+        User u = this.userService.getUserByUsername("dong");
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 }

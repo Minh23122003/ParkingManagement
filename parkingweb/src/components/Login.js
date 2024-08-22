@@ -19,16 +19,14 @@ const Login = () => {
                 "username": username, 
                 "password": password
             });
-
-            console.info(res.data)
             cookie.save("access-token", res.data)
 
-            // let user = await authAPIs().get(endpoints['current-user']);
-            // cookie.save("user", user.data);
+            let user = await authAPIs().get(endpoints['current-user']);
+            cookie.save("user", user.data);
 
             dispatch({
                 "type": "login",
-                "payload": 1
+                "payload": user.data
             });
        } catch(ex) {
            console.error(ex);

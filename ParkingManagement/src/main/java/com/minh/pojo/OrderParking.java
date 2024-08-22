@@ -4,6 +4,7 @@
  */
 package com.minh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -78,14 +79,17 @@ public class OrderParking implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    @JsonIgnore
     private Set<OrderCancel> orderCancelSet;
     @JoinColumn(name = "parking_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Parking parkingId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
 
     public OrderParking() {

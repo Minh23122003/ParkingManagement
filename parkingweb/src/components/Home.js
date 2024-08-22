@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import APIs, { endpoints } from "../configs/APIs";
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
+import cookie from "react-cookies";
 
 const Home = () => {
 
@@ -9,9 +10,9 @@ const Home = () => {
     const [q] = useSearchParams()
     const [page, setPage] = useState(1)
     const [address, setAddress] = useState("")
-    const [minPrice, setMinPrice] = useState("")
-    const [maxPrice, setMaxPrice] = useState("")
-    const [statusId, setStatusId] = useState(1)
+    const [dailyPrice, setDailyPrice] = useState("")
+    const [nightPrice, setNightPrice] = useState("")
+    const [statusId, setStatusId] = useState("")
     const [status, setStatus] = useState([])
     const nav = useNavigate();
 
@@ -19,37 +20,38 @@ const Home = () => {
         try {
             let url = `${endpoints["parkings"]}?page=${page}`
 
-            let sId = q.get("statusId");
-            if (sId !== null) {
-                setPage(1);
-                url = `${url}&statusId=${sId}`;
-            }
-
             let a = q.get("address");
             if (a !== null) {
                 setPage(1);
                 url = `${url}&address=${a}`;
             }
 
-            let min = q.get("minPrice");
-            if (min !== null) {
+            let daily = q.get("dailyPrice");
+            if (daily !== null) {
                 setPage(1);
-                url = `${url}&minPrice=${min}`;
+                url = `${url}&dailyPrice=${daily}`;
             }
 
-            let max = q.get("maxPrice");
-            if (max !== null) {
+            let night = q.get("nightPrice");
+            if (night !== null) {
                 setPage(1);
-                url = `${url}&maxPrice=${max}`;
+                url = `${url}&nightPrice=${night}`;
+            }
+
+            let sId = q.get("statusId");
+            if (sId !== null) {
+                setPage(1);
+                url = `${url}&statusId=${sId}`;
             }
 
             let res = await APIs.get(url)
-            console.info(parkings)
-            console.info(page)
+
             if (page === 1)
                 setParkings(res.data)
             else
                 setParkings(current => [...current, ...res.data])
+            console.info(parkings)
+            console.info(page)
         } catch (ex) {
             console.error(ex)
         }
@@ -72,14 +74,15 @@ const Home = () => {
         loadStatus()
     }, [])
     
-    const loadMore = () => {
+    const loadMore = (e) => {
+        e.preventDefault();
         setPage(page + 1);
     }
 
     const submit = (e) => {
         e.preventDefault();
 
-        nav(`/?address=${address}&minPrice=${minPrice}&maxPrice=${maxPrice}&statusId=${statusId}`);
+        nav(`/?address=${address}&dailyPrice=${dailyPrice}&nightPrice=${nightPrice}&statusId=${statusId}`);
     }
 
     return (
@@ -98,19 +101,19 @@ const Home = () => {
                 <Col xs="auto" >
                     <Form.Control
                         type="text"
-                        placeholder="Tìm giá thấp nhất..."
+                        placeholder="Tìm giá ngày..."
                         className=" mr-sm-2"
-                        value={minPrice}
-                        onChange={e => setMinPrice(e.target.value)}
+                        value={dailyPrice}
+                        onChange={e => setDailyPrice(e.target.value)}
                     />
                 </Col>
                 <Col xs="auto" >
                     <Form.Control
                         type="text"
-                        placeholder="Tìm giá cao nhất..."
+                        placeholder="Tìm giá đêm..."
                         className=" mr-sm-2"
-                        value={maxPrice}
-                        onChange={e => setMaxPrice(e.target.value)}
+                        value={nightPrice}
+                        onChange={e => setNightPrice(e.target.value)}
                     />
                 </Col>
                 <Col xs="auto">
@@ -147,14 +150,14 @@ const Home = () => {
                         <th>{p.statusId.name}</th>
                         <th>{p.note}</th>
                         {p.statusId.id === 1?<>
-                            <th><Button variant="primary">Đặt chỗ giữ xe</Button></th>
+                            <th><Button variant="primary"><Link className='nav-link' to="/order" onClick={()=>{cookie.save("parking", p)}}>Đặt chỗ giữ xe</Link></Button></th>
                         </>:<></>}
                     </tr>)}                  
                 </tbody>
                 </Table>
 
                 <div className="mt-2 text-center mb-1">
-                    <Button  onClick={loadMore} variant="primary">Xem thêm</Button>
+                    <Button onClick={loadMore} variant="primary">Xem thêm</Button>
                 </div>
         </>
     );

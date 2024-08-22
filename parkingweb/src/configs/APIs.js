@@ -8,7 +8,8 @@ export const endpoints = {
     'status': '/status',
     'login': '/login',
     'current-user': '/current-user',
-    'register': '/users'
+    'register': '/users',
+    'orderParking': '/orderParking',
 }
 
 export const authAPIs = () => {
