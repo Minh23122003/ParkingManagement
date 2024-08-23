@@ -45,7 +45,7 @@ public class ApiUserController {
             return new ResponseEntity<>(token, HttpStatus.OK);
         }
 
-        return new ResponseEntity<>("Sai tên tài kho?n ho?c m?t kh?u", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping(path = "/users",
