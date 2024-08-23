@@ -13,6 +13,6 @@ import java.util.Map;
  * @author PC
  */
 public interface OrderParkingRepository {
-    void addOrder(OrderParking o);
+    OrderParking addOrder(Map<String, String> params);
     List<OrderParking> getOrder(Map<String, String> params);
 }

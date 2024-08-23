@@ -56,6 +56,7 @@ create table order_parking (
     `status` varchar(50) not null,
     start_time datetime,
     end_time datetime,
+    total int not null,
     foreign key (user_id) references user(id),
     foreign key (parking_id) references parking(id)
 ) engine=InnoDB;

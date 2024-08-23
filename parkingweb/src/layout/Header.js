@@ -33,6 +33,7 @@ const Header = () => {
                          <Link className='nav-link text-success' to="/login">
                          <Image src={user.avatar} width="25" roundedCircle />
                               Chào {user.username}!</Link>
+                        <Link className='nav-link text-danger' to="/cart">&#128722; <Badge bg='danger'></Badge></Link>
                     <Button variant='danger' onClick={() => dispatch({"type": "logout"})}>Đăng xuất</Button>
                     </>}
                 </Nav>

@@ -50,8 +50,6 @@ const Home = () => {
                 setParkings(res.data)
             else
                 setParkings(current => [...current, ...res.data])
-            console.info(parkings)
-            console.info(page)
         } catch (ex) {
             console.error(ex)
         }

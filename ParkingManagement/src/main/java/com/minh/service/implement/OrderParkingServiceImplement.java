@@ -6,6 +6,8 @@ package com.minh.service.implement;
 
 import com.minh.pojo.OrderParking;
 import com.minh.repository.OrderParkingRepository;
+import com.minh.repository.ParkingRepository;
+import com.minh.repository.UserRepository;
 import com.minh.repository.implement.ParkingRepositoryImplement;
 import com.minh.repository.implement.UserRepositoryImplement;
 import com.minh.service.OrderParkingService;
@@ -24,29 +26,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OrderParkingServiceImplement implements OrderParkingService{
-    private UserRepositoryImplement u;
-    private ParkingRepositoryImplement r;
-    private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    
     @Autowired
     private OrderParkingRepository orderRepo;
 
     @Override
     public OrderParking addOrder(Map<String, String> params) {
-        OrderParking o = new OrderParking();
-        o.setVehicleName(params.get("vihicleName"));
-        o.setLicensePlates(params.get("licensePlates"));
-        o.setStatus(params.get("status"));
-        try {
-            o.setCreatedDate(formatter.parse(params.get("createdDate")));
-            o.setStartTime(formatter.parse(params.get("startTime")));
-            o.setEndTime(formatter.parse(params.get("endTime")));
-        } catch (ParseException ex) {
-            Logger.getLogger(OrderParkingServiceImplement.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        o.setUserId(this.u.getUserByUsername(params.get("username")));
-        o.setParkingId(this.r.getParkingById(Integer.parseInt(params.get("parkingId"))));
-        
-        return o;
+        return this.orderRepo.addOrder(params);
     }
 
     @Override

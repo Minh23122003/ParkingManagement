@@ -6,8 +6,15 @@ package com.minh.repository.implement;
 
 import com.minh.pojo.OrderParking;
 import com.minh.repository.OrderParkingRepository;
+import com.minh.repository.ParkingRepository;
+import com.minh.repository.UserRepository;
+import com.minh.service.implement.OrderParkingServiceImplement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -28,11 +35,30 @@ public class OrderParkingRepositoryImplement implements OrderParkingRepository{
 
     @Autowired
     private LocalSessionFactoryBean factory;
+    @Autowired
+    private UserRepository u;
+    @Autowired
+    private ParkingRepository r;
+    private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     
     @Override
-    public void addOrder(OrderParking o) {
+    public OrderParking addOrder(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
+        OrderParking o = new OrderParking();
+        o.setVehicleName(params.get("vehicleName"));
+        o.setLicensePlates(params.get("licensePlates"));
+        o.setStatus(params.get("status"));
+        try {
+            o.setCreatedDate(formatter.parse(params.get("createdDate")));
+            o.setStartTime(formatter.parse(params.get("startTime")));
+            o.setEndTime(formatter.parse(params.get("endTime")));
+        } catch (ParseException ex) {
+            Logger.getLogger(OrderParkingServiceImplement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        o.setUserId(this.u.getUserByUsername(params.get("username")));
+        o.setParkingId(this.r.getParkingById(Integer.parseInt(params.get("parkingId"))));
         s.save(o);
+        return o;
     }
 
     @Override
@@ -45,7 +71,7 @@ public class OrderParkingRepositoryImplement implements OrderParkingRepository{
         
         String userId = params.get("userId");
         if(userId != null)
-            q.where(b.equal(root.get("userId"), userId));
+            q.where(b.equal(root.get("userId"), Integer.parseInt(userId)));
         Query query = s.createQuery(q);
         return query.getResultList();
     }

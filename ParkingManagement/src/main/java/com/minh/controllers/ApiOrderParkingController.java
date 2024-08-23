@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,14 +33,14 @@ public class ApiOrderParkingController {
     private OrderParkingService orderParkingService;
     
     @PostMapping(path="/orderParking", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<OrderParking> addOrder(@RequestParam Map<String, String> params) {
+    public ResponseEntity<OrderParking> addOrder(@RequestBody Map<String, String> params) {
         OrderParking order = this.orderParkingService.addOrder(params);
         
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
     
     @GetMapping(path="/orderParking", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<OrderParking>> list(@RequestParam Map<String, String> params){
+    public ResponseEntity<List<OrderParking>> list(@RequestBody Map<String, String> params){
         List<OrderParking> orders = this.orderParkingService.getOrder(params);
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }

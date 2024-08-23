@@ -12,6 +12,7 @@ import Footer from './layout/Footer';
 import Header from './layout/Header';
 import MyCartReducer from './reducers/MyCartReducer';
 import MyUserReducer from './reducers/MyUserReducer';
+import Cart from './components/Cart';
 
 export const MyUserContext = createContext();
 export const MyDispatchContext = createContext();
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/order'  element={<Order />} />
+                <Route path='/cart' element={<Cart />} />
               </Routes>
             </Container>
             <Footer />
