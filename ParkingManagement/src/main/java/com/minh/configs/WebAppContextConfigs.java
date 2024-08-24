@@ -38,7 +38,7 @@ import org.springframework.web.servlet.view.JstlView;
     "com.minh.service",
     "com.minh.components"
 })
-@Order(1)
+//@Order(1)
 public class WebAppContextConfigs implements WebMvcConfigurer {
 
     @Override

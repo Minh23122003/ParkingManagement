@@ -13,6 +13,7 @@ import Header from './layout/Header';
 import MyCartReducer from './reducers/MyCartReducer';
 import MyUserReducer from './reducers/MyUserReducer';
 import Cart from './components/Cart';
+import Profile from './components/Profile';
 
 export const MyUserContext = createContext();
 export const MyDispatchContext = createContext();
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path='/register' element={<Register />} />
                 <Route path='/order'  element={<Order />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/profile' element={<Profile />} />
               </Routes>
             </Container>
             <Footer />

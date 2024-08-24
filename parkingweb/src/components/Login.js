@@ -20,14 +20,16 @@ const Login = () => {
                 "password": password
             });
             cookie.save("access-token", res.data)
-
+            
             let user = await authAPIs().get(endpoints['current-user']);
             cookie.save("user", user.data);
-
             dispatch({
                 "type": "login",
                 "payload": user.data
             });
+            
+
+            
        } catch(ex) {
            console.error(ex);
        }
@@ -37,7 +39,7 @@ const Login = () => {
         return <Navigate to="/" />
 
     return (<>
-        <h1 className="text-center text-info mt-1">ĐĂNG NHẬP NGƯỜI DÙNG</h1>
+        <h1 className="text-center text-info mt-1">ĐĂNG NHẬP</h1>
 
         <Form method="post" onSubmit={login}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

@@ -11,7 +11,7 @@ const Header = () => {
     const dispatch = useContext(MyDispatchContext);
     const nav = useNavigate();
     useEffect(()=>{
-        console.info(user)
+        // cookie.save("user", null)
     })
 
     return (
@@ -30,11 +30,11 @@ const Header = () => {
                         
                         
                     </>:<>
-                         <Link className='nav-link text-success' to="/login">
+                         <Link className='nav-link text-success' to="/profile">
                          <Image src={user.avatar} width="25" roundedCircle />
                               Chào {user.username}!</Link>
                         <Link className='nav-link text-danger' to="/cart">&#128722; <Badge bg='danger'></Badge></Link>
-                    <Button variant='danger' onClick={() => dispatch({"type": "logout"})}>Đăng xuất</Button>
+                    <Button variant='danger' onClick={() => dispatch({"type": "logout"})}><Link to="/" className='nav-link'>Đăng xuất</Link></Button>
                     </>}
                 </Nav>
                 </Navbar.Collapse>

@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import cookie, { load } from "react-cookies";
 import APIs, { endpoints } from "../configs/APIs";
+import { MyUserContext } from "../App";
+import { Navigate } from "react-router";
 
 const Order = () => {
     const [parking, setParking] = useState(cookie.load("parking"))
@@ -9,10 +11,9 @@ const Order = () => {
     const [licensePlates, setLicensePlates] = useState("")
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
-    const user = cookie.load("user")
+    const user = useContext(MyUserContext)
     
     useEffect(() => {
-        console.info(parking)
     }, [parking])
 
     const Order = async (e) => {
@@ -21,12 +22,13 @@ const Order = () => {
         var d = new Date().getDate()
         var m = new Date().getMonth()
         var y = new Date().getFullYear()
-        console.info(d)
-        console.info(m)
-        console.info(y)
+
         var s = new Date(startTime)
         var e = new Date(endTime)
-        if (vehicleName === "" || licensePlates === "" || startTime === "" || endTime === "")
+
+        if (user === null)
+            alert("Bạn chưa đăng nhập. Vui lòng đăng nhập")
+        else if (vehicleName === "" || licensePlates === "" || startTime === "" || endTime === "")
             alert("Thông tin chưa đầy đủ. Vui lòng kiểm tra lại")
         else if (licensePlates.length < 4 || licensePlates.length > 5)
             alert("Sai biển số xe. Vui lòng nhập lại")
@@ -36,7 +38,10 @@ const Order = () => {
             alert("Ngày trả phải sau ngày gửi")
         else {
             try{
-                let res = await APIs.post(endpoints['orderParking'],{
+                var day = (e - s) / 86400000
+                var total = day * parking.nightPrice + (day + 1) * parking.dailyPrice
+
+                let res = await APIs.post(endpoints['addOrderParking'],{
                     "vehicleName": vehicleName,
                     "licensePlates": licensePlates,
                     "parkingId": parking.id,
@@ -44,7 +49,8 @@ const Order = () => {
                     "status": "Chưa thanh toán",
                     "createdDate": `${y}-${parseInt(m) + 1}-${d}`,
                     "startTime": startTime,
-                    "endTime": endTime
+                    "endTime": endTime,
+                    "total": total
                 })
                 if (res.status===201)
                     alert("Đặt chỗ thành công")

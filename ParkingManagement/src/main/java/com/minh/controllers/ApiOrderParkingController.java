@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,16 +34,22 @@ public class ApiOrderParkingController {
     @Autowired
     private OrderParkingService orderParkingService;
     
-    @PostMapping(path="/orderParking", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(path="/addOrderParking", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<OrderParking> addOrder(@RequestBody Map<String, String> params) {
         OrderParking order = this.orderParkingService.addOrder(params);
         
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
     
-    @GetMapping(path="/orderParking", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(path="/getOrderParking", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<OrderParking>> list(@RequestBody Map<String, String> params){
         List<OrderParking> orders = this.orderParkingService.getOrder(params);
         return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/orderParking/{orderParkingId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable(value = "orderParkingId") int id) {
+        this.orderParkingService.deleteOrderParking(id);
     }
 }

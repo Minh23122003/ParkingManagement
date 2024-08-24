@@ -39,5 +39,15 @@ public class OrderParkingServiceImplement implements OrderParkingService{
     public List<OrderParking> getOrder(Map<String, String> params) {
         return this.orderRepo.getOrder(params);
     }
+
+    @Override
+    public void deleteOrderParking(int id) {
+        this.orderRepo.deleteOrderParking(id);
+    }
+
+    @Override
+    public OrderParking getOrderParkingById(int id) {
+        return this.orderRepo.getOrderParkingById(id);
+    }
     
 }

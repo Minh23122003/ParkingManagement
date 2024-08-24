@@ -9,7 +9,9 @@ export const endpoints = {
     'login': '/login',
     'current-user': '/current-user',
     'register': '/users',
-    'orderParking': '/orderParking',
+    'addOrderParking': '/addOrderParking',
+    'getOrderParking': '/getOrderParking',
+    'deleteOrderParking' : (orderId) => `/orderParking/${orderId}`
 }
 
 export const authAPIs = () => {

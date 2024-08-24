@@ -65,7 +65,7 @@ public class ApiUserController {
 //            return new ResponseEntity<>(u, HttpStatus.OK);
 //        }        
         
-        User u = this.userService.getUserByUsername("admin");    
+        User u = this.userService.getUserByUsername(user.getName());    
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 }

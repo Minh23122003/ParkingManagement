@@ -15,4 +15,6 @@ import java.util.Map;
 public interface OrderParkingRepository {
     OrderParking addOrder(Map<String, String> params);
     List<OrderParking> getOrder(Map<String, String> params);
+    void deleteOrderParking(int id);
+    OrderParking getOrderParkingById(int id);
 }

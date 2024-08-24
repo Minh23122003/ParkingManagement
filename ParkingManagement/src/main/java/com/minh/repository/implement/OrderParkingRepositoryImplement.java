@@ -57,6 +57,7 @@ public class OrderParkingRepositoryImplement implements OrderParkingRepository{
         }
         o.setUserId(this.u.getUserByUsername(params.get("username")));
         o.setParkingId(this.r.getParkingById(Integer.parseInt(params.get("parkingId"))));
+        o.setTotal(Integer.parseInt(params.get("total")));
         s.save(o);
         return o;
     }
@@ -74,6 +75,19 @@ public class OrderParkingRepositoryImplement implements OrderParkingRepository{
             q.where(b.equal(root.get("userId"), Integer.parseInt(userId)));
         Query query = s.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public void deleteOrderParking(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        OrderParking o = this.getOrderParkingById(id);
+        s.delete(o);
+    }
+
+    @Override
+    public OrderParking getOrderParkingById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(OrderParking.class, id);
     }
     
 }

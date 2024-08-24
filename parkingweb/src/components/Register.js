@@ -40,7 +40,7 @@ const Register = () => {
 
     return (
         <>
-            <h1 className="text-center text-info mt-1">ĐĂNG KÝ NGƯỜI DÙNG</h1>
+            <h1 className="text-center text-info mt-1">ĐĂNG KÝ</h1>
             {err && <Alert variant="danger">{err}</Alert>}
             <Form method="post" onSubmit={register}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput11">

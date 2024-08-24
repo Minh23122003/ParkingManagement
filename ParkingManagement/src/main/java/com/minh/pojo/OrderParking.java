@@ -46,7 +46,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "OrderParking.findByEndTime", query = "SELECT o FROM OrderParking o WHERE o.endTime = :endTime")})
 public class OrderParking implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -78,6 +78,10 @@ public class OrderParking implements Serializable {
     @Column(name = "end_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "total")
+    private int total;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
     @JsonIgnore
     private Set<OrderCancel> orderCancelSet;
@@ -200,7 +204,7 @@ public class OrderParking implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (getId() != null ? getId().hashCode() : 0);
         return hash;
     }
 
@@ -211,7 +215,7 @@ public class OrderParking implements Serializable {
             return false;
         }
         OrderParking other = (OrderParking) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -219,7 +223,21 @@ public class OrderParking implements Serializable {
 
     @Override
     public String toString() {
-        return "com.minh.pojo.OrderParking[ id=" + id + " ]";
+        return "com.minh.pojo.OrderParking[ id=" + getId() + " ]";
+    }
+
+    /**
+     * @return the total
+     */
+    public int getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(int total) {
+        this.total = total;
     }
     
 }
