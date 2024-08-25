@@ -12,6 +12,6 @@ import java.util.Map;
  * @author PC
  */
 public interface CommentService {
-    Comment addComment(Map<String, String> params);
+    Comment addOrUpdateComment(Map<String, String> params);
     Comment getCommentById(int id);
 }

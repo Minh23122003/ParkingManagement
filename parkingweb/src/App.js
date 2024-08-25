@@ -14,6 +14,9 @@ import MyCartReducer from './reducers/MyCartReducer';
 import MyUserReducer from './reducers/MyUserReducer';
 import Cart from './components/Cart';
 import Profile from './components/Profile';
+import Rating from './components/Rating';
+import Comment from './components/Comment';
+import OrderCancel from './components/orderCancel';
 
 export const MyUserContext = createContext();
 export const MyDispatchContext = createContext();
@@ -37,6 +40,9 @@ const App = () => {
                 <Route path='/order'  element={<Order />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/profile' element={<Profile />} />
+                <Route path='/rating' element={<Rating />} />
+                <Route path='/comment' element={<Comment />} />
+                <Route path='/orderCancel' element={<OrderCancel />} />
               </Routes>
             </Container>
             <Footer />

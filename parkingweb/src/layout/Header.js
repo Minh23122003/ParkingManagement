@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { Badge, Button, Col, Container, Form, Image, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
+import { useContext, useEffect } from 'react';
+import { Badge, Button, Container, Image, Nav, Navbar} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { MyCartContext, MyDispatchContext, MyUserContext } from '../App';
-import APIs, { endpoints } from '../configs/APIs';
+import { MyDispatchContext, MyUserContext } from '../App';
 import cookie from "react-cookies";
 
 const Header = () => {
@@ -34,7 +33,7 @@ const Header = () => {
                          <Image src={user.avatar} width="25" roundedCircle />
                               Chào {user.username}!</Link>
                         <Link className='nav-link text-danger' to="/cart">&#128722; <Badge bg='danger'></Badge></Link>
-                    <Button variant='danger' onClick={() => dispatch({"type": "logout"})}><Link to="/" className='nav-link'>Đăng xuất</Link></Button>
+                    <Button variant='info' onClick={() => dispatch({"type": "logout"})}><Link to="/" className='nav-link'>Đăng xuất</Link></Button>
                     </>}
                 </Nav>
                 </Navbar.Collapse>

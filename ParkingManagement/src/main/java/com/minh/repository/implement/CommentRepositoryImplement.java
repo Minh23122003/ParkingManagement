@@ -9,6 +9,11 @@ import com.minh.repository.CommentRepository;
 import com.minh.repository.ParkingRepository;
 import com.minh.repository.UserRepository;
 import java.util.Map;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -31,8 +36,23 @@ public class CommentRepositoryImplement implements CommentRepository{
     private ParkingRepository p;
     
     @Override
-    public Comment addComment(Map<String, String> params) {
+    public Comment addOrUpdateComment(Map<String, String> params) {
         Session s = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = s.getCriteriaBuilder();
+        CriteriaQuery<Comment> q = b.createQuery(Comment.class);
+        Root root = q.from(Comment.class);
+        q.select(root);
+        Predicate p1 = b.equal(root.get("parkingId"), Integer.parseInt(params.get("parkingId")));
+        Predicate p2 = b.equal(root.get("userId"), this.u.getUserByUsername(params.get("username")).getId());
+        q.where(b.and(p1, p2));
+        Query query = s.createQuery(q);
+        if (query != null){
+            Comment c = (Comment) query.getSingleResult();
+            c.setContent(params.get("content"));
+            s.update(c);
+            return c;
+        }       
+        
         Comment c = new Comment();
         c.setContent(params.get("content"));
         c.setParkingId(this.p.getParkingById(Integer.parseInt(params.get("parkingId"))));

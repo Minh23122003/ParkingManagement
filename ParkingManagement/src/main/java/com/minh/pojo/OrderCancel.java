@@ -53,6 +53,21 @@ public class OrderCancel implements Serializable {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "status")
+    private String status;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "account_number")
+    private String accountNumber;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "bank_name")
+    private String bankName;
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private OrderParking orderId;
@@ -125,6 +140,48 @@ public class OrderCancel implements Serializable {
     @Override
     public String toString() {
         return "com.minh.pojo.OrderCancel[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the accountNumber
+     */
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    /**
+     * @param accountNumber the accountNumber to set
+     */
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    /**
+     * @return the bankName
+     */
+    public String getBankName() {
+        return bankName;
+    }
+
+    /**
+     * @param bankName the bankName to set
+     */
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
     
 }

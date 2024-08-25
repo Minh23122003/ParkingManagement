@@ -4,11 +4,9 @@
  */
 package com.minh.controllers;
 
-import com.minh.pojo.Comment;
-import com.minh.repository.CommentRepository;
-import com.minh.service.CommentService;
+import com.minh.pojo.OrderCancel;
+import com.minh.service.OrderCancelService;
 import java.util.Map;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,14 +24,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
-public class ApiCommentController {
+public class ApiOrderCancelController {
     @Autowired
-    private CommentService commentService;
+    private OrderCancelService orderCancelService;
     
-    @PostMapping(path="/comment", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Comment> addOrUpdateComment(@RequestBody Map<String, String> params) {
-        Comment comment = this.commentService.addOrUpdateComment(params);
+    @PostMapping(path="/orderCancel", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<OrderCancel> addOrder(@RequestBody Map<String, String> params) {
+        OrderCancel order = this.orderCancelService.addOrderCancel(params);
         
-        return new ResponseEntity<>(comment, HttpStatus.CREATED);
+        return new ResponseEntity<>(order, HttpStatus.CREATED);
     }
 }

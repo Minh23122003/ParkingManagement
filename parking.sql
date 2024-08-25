@@ -74,6 +74,9 @@ create table order_cancel (
     order_id int not null,
     reason varchar(255) not null,
     `date` datetime not null,
+    `status` varchar(100) not null,
+    bank_name varchar(50) not null,
+    account_number varchar(20) not null,
     foreign key (order_id) references order_parking(id)
 ) engine=InnoDB;
 

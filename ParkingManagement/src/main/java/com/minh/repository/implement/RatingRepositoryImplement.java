@@ -8,6 +8,7 @@ import com.minh.pojo.Rating;
 import com.minh.repository.ParkingRepository;
 import com.minh.repository.RatingRepository;
 import com.minh.repository.UserRepository;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -42,9 +43,9 @@ public class RatingRepositoryImplement implements RatingRepository{
         CriteriaQuery<Rating> q = b.createQuery(Rating.class);
         Root root = q.from(Rating.class);
         q.select(root);
-        Predicate p1 = b.equal(root.get("parkingId"), params.get("parkingId"));
+        Predicate p1 = b.equal(root.get("parkingId"), Integer.parseInt(params.get("parkingId")));
         Predicate p2 = b.equal(root.get("userId"), this.u.getUserByUsername(params.get("username")).getId());
-        q.where(p1, p2);
+        q.where(b.and(p1, p2));
         Query query = s.createQuery(q);
         if (query != null){
             Rating r = (Rating) query.getSingleResult();

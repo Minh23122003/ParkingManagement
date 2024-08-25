@@ -22,8 +22,8 @@ public class CommentServiceImplement implements CommentService{
     private CommentRepository commentRepository;
 
     @Override
-    public Comment addComment(Map<String, String> params) {
-        return this.commentRepository.addComment(params);
+    public Comment addOrUpdateComment(Map<String, String> params) {
+        return this.commentRepository.addOrUpdateComment(params);
     }
 
     @Override

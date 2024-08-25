@@ -4,6 +4,7 @@
  */
 package com.minh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -49,6 +50,7 @@ public class Comment implements Serializable {
     private Parking parkingId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private User userId;
 
     public Comment() {

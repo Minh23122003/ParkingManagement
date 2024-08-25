@@ -11,12 +11,10 @@ const Cart = () => {
     const [orderId, setOrderId] = useState(null)
 
     const loadOrder = async () => {
-        console.info(user.id)
         try {
             let res = await APIs.post(endpoints['getOrderParking'], {
                 "userId": user.id
             })
-            console.info(res.data)
             setOrder(res.data)
             cookie.save("order", res.data)
             setQuantity(order.length)
@@ -57,6 +55,7 @@ const Cart = () => {
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -73,6 +72,7 @@ const Cart = () => {
                 <th></th>
                 {o.status === "Đã thanh toán" && new Date() > new Date(o.endTime)?<th><Button><Link onClick={()=> cookie.save("order", o)} className="nav-link" to="/rating">Đánh giá</Link></Button></th>:<th></th>}
                 {o.status === "Đã thanh toán" && new Date() > new Date(o.endTime)?<th><Button><Link onClick={()=> cookie.save("order", o)} className="nav-link" to="/comment">Nhận xét</Link></Button></th>:<th></th>}
+                {o.status === "Đã thanh toán" && new Date(o.startTime) > new Date()?<th><Button><Link onClick={()=> cookie.save("order", o)} className="nav-link" to="/orderCancel">Hủy đặt chỗ</Link></Button></th>:<th></th>}
             </tr>)}                  
         </tbody>
         </Table>

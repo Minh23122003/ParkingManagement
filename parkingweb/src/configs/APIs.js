@@ -11,7 +11,10 @@ export const endpoints = {
     'register': '/users',
     'addOrderParking': '/addOrderParking',
     'getOrderParking': '/getOrderParking',
-    'deleteOrderParking' : (orderId) => `/orderParking/${orderId}`
+    'deleteOrderParking' : (orderId) => `/orderParking/${orderId}`,
+    'addComment': '/comment',
+    'addRating': '/rating',
+    'addOrderCancel': '/orderCancel',
 }
 
 export const authAPIs = () => {
