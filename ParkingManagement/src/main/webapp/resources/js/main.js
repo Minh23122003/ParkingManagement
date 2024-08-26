@@ -31,4 +31,18 @@ function deleteStatus(endpoint, statusId) {
     }
 }
 
+function deleteUser(endpoint, userId) {
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(endpoint, {
+            method: "delete"
+        }).then(res => {
+            if (res.status === 204) {
+                let d = document.getElementById(`user${userId}`);
+                d.style.display = "none";
+            } else
+                alert("Something Wrong!");
+        });
+    }
+}
+
 

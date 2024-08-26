@@ -25,12 +25,12 @@ public class StatusController {
     @Autowired
     private StatusService statusService;
     
-    @GetMapping("/statuses")
+    @GetMapping("/status")
     public String createView(Model model) {
-        return "statuses";
+        return "status";
     }
     
-    @PostMapping("/statuses")
+    @PostMapping("/status")
     public String createView(Model model, @ModelAttribute(value = "statusDetails") @Valid Status s, BindingResult rs) {
         if (rs.hasErrors())
             return "statusDetails";
@@ -38,7 +38,7 @@ public class StatusController {
         try {
             this.statusService.addOrUpdate(s);
             
-            return "redirect:/statuses";
+            return "redirect:/status";
         } catch (Exception ex) {
             model.addAttribute("errMsg", ex.getMessage());
         }
@@ -46,13 +46,13 @@ public class StatusController {
         return "statusDetails";
     }
     
-    @GetMapping("/statuses/{statusId}")
+    @GetMapping("/status/{statusId}/update")
     public String detailsView(Model model, @PathVariable(value = "statusId") int id){
         model.addAttribute("statusDetails", this.statusService.getStatusById(id));
         return "statusDetails";
     }
     
-    @GetMapping("/statuses/add")
+    @GetMapping("/status/add")
     public String addView(Model model){
         model.addAttribute("statusDetails", new Status());
         return "statusDetails";

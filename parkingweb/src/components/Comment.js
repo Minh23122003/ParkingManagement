@@ -2,23 +2,25 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import APIs, { authAPIs, endpoints } from "../configs/APIs";
 import cookie, { load } from "react-cookies";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 const Comment = () => {
     const [content, setContent] = useState();
     const user = cookie.load('user');
     const order = cookie.load('order')
+    const nav = useNavigate()
 
     const addComment = async () => {
         try {
             let res = await APIs.post(endpoints['addComment'], {
                 'content': content,
-                'userId': user.id,
+                'username': user.username,
                 'parkingId': order.parkingId.id
             })
     
             if(res.status === 201)
-                return <Navigate to="/cart" />
+                alert("Nhận xét thành công")
+                nav('/cart')
         }catch (ex) {
             console.error(ex)
         }

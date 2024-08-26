@@ -17,12 +17,20 @@
         <put-attribute name="title" value="Quản trị bãi đỗ xe" />
         <put-attribute name="content" value="/WEB-INF/pages/parkings.jsp" />
     </definition>
-    <definition name="statuses" extends="baseLayout">
+    <definition name="status" extends="baseLayout">
         <put-attribute name="title" value="Quản trị trạng thái" />
-        <put-attribute name="content" value="/WEB-INF/pages/statuses.jsp" />
+        <put-attribute name="content" value="/WEB-INF/pages/status.jsp" />
     </definition>
     <definition name="statusDetails" extends="baseLayout">
         <put-attribute name="title" value="Chi tiết trạng thái" />
         <put-attribute name="content" value="/WEB-INF/pages/statusDetails.jsp" />
+    </definition>
+    <definition name="user" extends="baseLayout">
+        <put-attribute name="title" value="Quản trị user" />
+        <put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
+    </definition>
+    <definition name="userDetails" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết user" />
+        <put-attribute name="content" value="/WEB-INF/pages/userDetails.jsp" />
     </definition>
 </tiles-definitions>

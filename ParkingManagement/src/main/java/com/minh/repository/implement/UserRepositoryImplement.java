@@ -6,6 +6,7 @@ package com.minh.repository.implement;
 
 import com.minh.pojo.User;
 import com.minh.repository.UserRepository;
+import java.util.List;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -54,6 +55,26 @@ public class UserRepositoryImplement implements UserRepository {
         s.save(user);
 
         return user;
+    }
+
+    @Override
+    public List<User> getUser() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From User");
+        return q.getResultList();
+    }
+
+    @Override
+    public User getUserById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(User.class, id);
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        User u = this.getUserById(id);
+        s.delete(u);
     }
 
 }

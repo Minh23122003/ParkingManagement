@@ -11,7 +11,7 @@
 <h1>Quản trị trạng thái</h1>
 
 <div class="col-md-10 col-12">
-    <a class="btn btn-info m-1" href="<c:url value="/statuses/add" />">Thêm trạng thái</a>
+    <a class="btn btn-info m-1" href="<c:url value="/status/add" />">Thêm trạng thái</a>
 <table class="table table-striped">
     <tr>
         <th>Id</th>
@@ -23,7 +23,7 @@
             <td>${s.id}</td>
             <td>${s.name}</td>
             <td>
-                <c:url value="/statuses/${s.id}" var="u" />
+                <c:url value="/status/${s.id}/update" var="u" />
                 <a href="${u}" class="btn btn-success">&orarr;</a>
 
                 <c:url value="/api/status/${s.id}" var="uD" />

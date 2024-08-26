@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/statuses" var="action" />
+<c:url value="/status" var="action" />
 
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="statusDetails">
     <form:errors path="*" element="div" cssClass="text-danger"/>

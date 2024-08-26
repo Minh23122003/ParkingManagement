@@ -20,7 +20,10 @@
                     <a class="nav-link" href="<c:url value="/" />">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/statuses" />">Trạng thái</a>
+                    <a class="nav-link" href="<c:url value="/status" />">Trạng thái</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/user" />">User</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/stats" />">Thống kê</a>

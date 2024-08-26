@@ -2,24 +2,26 @@ import { useState } from "react";
 import APIs, { endpoints } from "../configs/APIs";
 import cookie, { load } from "react-cookies";
 import { Button, Form } from "react-bootstrap";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 const Rating = () => {
 
     const [stars, setStars] = useState();
     const user = cookie.load('user');
     const order = cookie.load('order')
+    const nav = useNavigate()
 
     const addRating = async () => {
         try {
             let res = await APIs.post(endpoints['addRating'], {
                 'stars': stars,
-                'userId': user.id,
+                'username': user.username,
                 'parkingId': order.parkingId.id
             })
     
             if(res.status === 201)
-                return <Navigate to="/cart" />
+                alert("Đánh giá thành công")
+                nav('/cart')
         }catch (ex) {
             console.error(ex)
         }

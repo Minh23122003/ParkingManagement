@@ -11,6 +11,7 @@ import com.minh.repository.UserRepository;
 import com.minh.service.UserService;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -85,6 +86,21 @@ public class UserServiceImplement implements UserService {
         authorities.add(new SimpleGrantedAuthority(u.getUserRole()));
         return new org.springframework.security.core.userdetails.User(
                 u.getUsername(), u.getPassword(), authorities);
+    }
+
+    @Override
+    public List<User> getUser() {
+        return this.userRepo.getUser();
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return this.userRepo.getUserById(id);
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        this.userRepo.deleteUser(id);
     }
 
 }

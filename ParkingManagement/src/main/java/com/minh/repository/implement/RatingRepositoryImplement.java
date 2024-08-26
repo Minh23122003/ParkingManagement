@@ -47,7 +47,7 @@ public class RatingRepositoryImplement implements RatingRepository{
         Predicate p2 = b.equal(root.get("userId"), this.u.getUserByUsername(params.get("username")).getId());
         q.where(b.and(p1, p2));
         Query query = s.createQuery(q);
-        if (query != null){
+        if (query.getResultList().size() != 0){
             Rating r = (Rating) query.getSingleResult();
             r.setStars(Integer.parseInt(params.get("stars")));
             s.update(r);

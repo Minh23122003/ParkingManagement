@@ -5,6 +5,7 @@
 package com.minh.repository;
 
 import com.minh.pojo.User;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,7 @@ public interface UserRepository {
     User getUserByUsername(String username);
     boolean authUser(String username, String password);
     User addUser(User user);
+    List<User> getUser();
+    User getUserById(int id);
+    void deleteUser(int id);
 }
