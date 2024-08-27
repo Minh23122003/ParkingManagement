@@ -6,7 +6,9 @@ package com.minh.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.minh.formatters.ParkingFormatter;
 import com.minh.formatters.StatusFormatter;
+import com.minh.formatters.UserFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -96,5 +98,7 @@ public class WebAppContextConfigs implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new StatusFormatter());
+        registry.addFormatter(new ParkingFormatter());
+        registry.addFormatter(new UserFormatter());
     }
 }

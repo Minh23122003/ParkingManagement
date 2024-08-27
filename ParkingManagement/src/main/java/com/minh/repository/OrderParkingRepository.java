@@ -17,4 +17,5 @@ public interface OrderParkingRepository {
     List<OrderParking> getOrder(Map<String, String> params);
     void deleteOrderParking(int id);
     OrderParking getOrderParkingById(int id);
+    List<OrderParking> getOrder();
 }

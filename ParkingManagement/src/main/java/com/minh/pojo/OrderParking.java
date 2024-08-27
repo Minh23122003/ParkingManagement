@@ -90,7 +90,6 @@ public class OrderParking implements Serializable {
     private Parking parkingId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonIgnore
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
     @JsonIgnore

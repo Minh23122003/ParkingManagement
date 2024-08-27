@@ -89,5 +89,12 @@ public class OrderParkingRepositoryImplement implements OrderParkingRepository{
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(OrderParking.class, id);
     }
+
+    @Override
+    public List<OrderParking> getOrder() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From OrderParking");
+        return q.getResultList();
+    }
     
 }

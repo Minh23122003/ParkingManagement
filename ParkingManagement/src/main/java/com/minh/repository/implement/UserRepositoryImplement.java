@@ -77,4 +77,16 @@ public class UserRepositoryImplement implements UserRepository {
         s.delete(u);
     }
 
+    @Override
+    public void addOrUpdate(User u) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (u.getId() != null) {
+            s.update(u);
+        }
+        else {
+            u.setPassword(passEncoder.encode(u.getPassword()));
+            s.save(u);
+        }
+    }
+
 }

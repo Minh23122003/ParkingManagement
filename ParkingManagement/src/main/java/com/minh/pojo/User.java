@@ -89,8 +89,7 @@ public class User implements Serializable {
     @Column(name = "user_role")
     private String userRole;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
+//    @Size(min = 1, max = 100)
     @Column(name = "avatar")
     private String avatar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")

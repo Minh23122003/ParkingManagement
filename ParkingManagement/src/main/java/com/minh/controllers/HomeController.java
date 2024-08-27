@@ -6,6 +6,7 @@ package com.minh.controllers;
 
 import com.minh.service.ParkingService;
 import com.minh.service.StatusService;
+import com.minh.service.UserService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +27,13 @@ public class HomeController {
     private ParkingService parkingService;
     @Autowired
     private StatusService statusService;
+    @Autowired
+    private UserService userService;
     
     @ModelAttribute
     public void commAttrs(Model model) {
         model.addAttribute("status", statusService.getStatus());
+        model.addAttribute("user", this.userService.getUser());
     }
     
     @RequestMapping("/")

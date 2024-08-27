@@ -33,4 +33,12 @@
         <put-attribute name="title" value="Chi tiết user" />
         <put-attribute name="content" value="/WEB-INF/pages/userDetails.jsp" />
     </definition>
+    <definition name="orderParking" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý đặt bãi đỗ xe" />
+        <put-attribute name="content" value="/WEB-INF/pages/orderParking.jsp" />
+    </definition>
+    <definition name="orderParkingDetails" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết đặt bãi đỗ xe" />
+        <put-attribute name="content" value="/WEB-INF/pages/orderParkingDetails.jsp" />
+    </definition>
 </tiles-definitions>
