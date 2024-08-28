@@ -19,7 +19,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -30,7 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author PC
  */
 @Entity
-@Table(name = "user")
+@Table(name = "user", uniqueConstraints={@UniqueConstraint(columnNames={"username", "email", "phone"})})
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
@@ -61,7 +63,7 @@ public class User implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "last_name")
     private String lastName;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -76,7 +78,7 @@ public class User implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @Basic(optional = false)
     @NotNull
@@ -88,6 +90,7 @@ public class User implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "user_role")
     private String userRole;
+    @NotNull
     @Basic(optional = false)
 //    @Size(min = 1, max = 100)
     @Column(name = "avatar")

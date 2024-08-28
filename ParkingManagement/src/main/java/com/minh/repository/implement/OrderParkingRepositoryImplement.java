@@ -96,5 +96,15 @@ public class OrderParkingRepositoryImplement implements OrderParkingRepository{
         Query q = s.createQuery("From OrderParking");
         return q.getResultList();
     }
-    
+
+    @Override
+    public void addOrUpdate(OrderParking o) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (o.getId() != null) {
+            s.update(o);
+        }
+        else {
+            s.save(o);
+        }
+    }
 }

@@ -44,8 +44,8 @@ public class UserController {
     
     @PostMapping("/user")
     public String createView(Model model, @ModelAttribute(value = "userDetails") @Valid User u, BindingResult rs) {
-        if (rs.hasErrors())
-            return "userDetails";
+//        if (rs.hasErrors())
+//            return "userDetails";
         
         try {
             this.userService.addOrUpdate(u);

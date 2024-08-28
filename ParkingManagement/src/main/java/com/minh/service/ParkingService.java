@@ -17,4 +17,5 @@ public interface ParkingService {
     void addOrUpdate(Parking p);
     public Parking getParkingById(int id);
     void deleteParking(int id);
+    List<Parking> getParking();
 }

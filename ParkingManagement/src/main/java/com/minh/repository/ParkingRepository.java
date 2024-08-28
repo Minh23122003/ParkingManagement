@@ -17,6 +17,6 @@ public interface ParkingRepository {
     void addOrUpdate(Parking p);
     Parking getParkingById(int id);
     void deleteParking(int id);
-    
+    List<Parking> getParking();
     
 }

@@ -29,6 +29,9 @@
                     <a class="nav-link" href="<c:url value="/orderParking" />">OrderParking</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="<c:url value="/rating" />">Rating</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="<c:url value="/stats" />">Thống kê</a>
                 </li>
                 <s:authorize access="hasAnyRole('USER', 'ADMIN')">

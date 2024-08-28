@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -45,7 +46,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "OrderParking.findByStartTime", query = "SELECT o FROM OrderParking o WHERE o.startTime = :startTime"),
     @NamedQuery(name = "OrderParking.findByEndTime", query = "SELECT o FROM OrderParking o WHERE o.endTime = :endTime")})
 public class OrderParking implements Serializable {
-
+    
     private static long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -94,6 +95,13 @@ public class OrderParking implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
     @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
+    
+    @Transient
+    private String createdDateTransient;
+    @Transient
+    private String startTimeTransient;
+    @Transient
+    private String endTimeTransient;
 
     public OrderParking() {
     }
@@ -237,6 +245,48 @@ public class OrderParking implements Serializable {
      */
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    /**
+     * @return the createdDateTransient
+     */
+    public String getCreatedDateTransient() {
+        return createdDateTransient;
+    }
+
+    /**
+     * @param createdDateTransient the createdDateTransient to set
+     */
+    public void setCreatedDateTransient(String createdDateTransient) {
+        this.createdDateTransient = createdDateTransient;
+    }
+
+    /**
+     * @return the startTimeTransient
+     */
+    public String getStartTimeTransient() {
+        return startTimeTransient;
+    }
+
+    /**
+     * @param startTimeTransient the startTimeTransient to set
+     */
+    public void setStartTimeTransient(String startTimeTransient) {
+        this.startTimeTransient = startTimeTransient;
+    }
+
+    /**
+     * @return the endTimeTransient
+     */
+    public String getEndTimeTransient() {
+        return endTimeTransient;
+    }
+
+    /**
+     * @param endTimeTransient the endTimeTransient to set
+     */
+    public void setEndTimeTransient(String endTimeTransient) {
+        this.endTimeTransient = endTimeTransient;
     }
     
 }

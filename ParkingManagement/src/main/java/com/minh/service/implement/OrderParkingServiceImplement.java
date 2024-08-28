@@ -54,5 +54,10 @@ public class OrderParkingServiceImplement implements OrderParkingService{
     public List<OrderParking> getOrder() {
         return this.orderRepo.getOrder();
     }
+
+    @Override
+    public void addOrUpdate(OrderParking o) {
+        this.orderRepo.addOrUpdate(o);
+    }
     
 }

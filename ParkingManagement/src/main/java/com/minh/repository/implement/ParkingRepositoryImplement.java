@@ -111,6 +111,13 @@ public class ParkingRepositoryImplement implements ParkingRepository{
         }
     }
 
+    @Override
+    public List<Parking> getParking() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Parking");
+        return q.getResultList();
+    }
+
 
     
 }

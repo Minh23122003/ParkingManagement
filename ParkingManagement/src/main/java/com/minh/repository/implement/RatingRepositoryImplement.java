@@ -66,5 +66,29 @@ public class RatingRepositoryImplement implements RatingRepository{
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Rating.class, id);
     }
+
+    @Override
+    public List<Rating> getRating() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Rating");
+        return q.getResultList();
+    }
+
+    @Override
+    public void addOrUpdate(Rating r) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (r.getId() != null) {
+            s.update(r);
+        } else {
+            s.save(r);
+        }
+    }
+
+    @Override
+    public void deleteRating(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Rating rating = this.getRatingById(id);
+        s.delete(rating);
+    }
     
 }

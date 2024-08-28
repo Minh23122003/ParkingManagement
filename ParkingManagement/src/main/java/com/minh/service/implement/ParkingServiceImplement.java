@@ -41,5 +41,10 @@ public class ParkingServiceImplement implements ParkingService{
     public void deleteParking(int id) {
         this.parkingRepo.deleteParking(id);
     }
+
+    @Override
+    public List<Parking> getParking() {
+        return this.parkingRepo.getParking();
+    }
     
 }

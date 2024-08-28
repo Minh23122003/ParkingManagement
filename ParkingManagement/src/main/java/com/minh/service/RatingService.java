@@ -5,6 +5,7 @@
 package com.minh.service;
 
 import com.minh.pojo.Rating;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,4 +15,7 @@ import java.util.Map;
 public interface RatingService {
     Rating addOrUpdateRating(Map<String, String> params);
     Rating getRatingById(int id);
+    List<Rating> getRating();
+    void addOrUpdate(Rating r);
+    void deleteRating(int id);
 }

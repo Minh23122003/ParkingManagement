@@ -4,6 +4,7 @@
  */
 package com.minh.controllers;
 
+import com.minh.pojo.Parking;
 import com.minh.service.ParkingService;
 import com.minh.service.StatusService;
 import com.minh.service.UserService;
@@ -34,6 +35,7 @@ public class HomeController {
     public void commAttrs(Model model) {
         model.addAttribute("status", statusService.getStatus());
         model.addAttribute("user", this.userService.getUser());
+        model.addAttribute("getParking", this.parkingService.getParking());
     }
     
     @RequestMapping("/")

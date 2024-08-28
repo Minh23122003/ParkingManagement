@@ -22,7 +22,7 @@ create table `user` (
     last_name varchar(100) not null,
     email varchar(50) not null,
     phone varchar(10) not null,
-    username varchar(100) not null,
+    username varchar(100) not null unique,
     `password` varchar(100) not null,
     user_role varchar(15) not null,
     avatar varchar(100) not null

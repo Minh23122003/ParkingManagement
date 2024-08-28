@@ -4,9 +4,15 @@
  */
 package com.minh.repository.implement;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.minh.pojo.User;
 import com.minh.repository.UserRepository;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -31,6 +37,8 @@ public class UserRepositoryImplement implements UserRepository {
     private LocalSessionFactoryBean factory;
     @Autowired
     private BCryptPasswordEncoder passEncoder;
+    @Autowired
+    private Cloudinary cloudinary;
 
     @Override
     public User getUserByUsername(String username) {
@@ -78,14 +86,24 @@ public class UserRepositoryImplement implements UserRepository {
     }
 
     @Override
-    public void addOrUpdate(User u) {
+    public void addOrUpdate(User user){
         Session s = this.factory.getObject().getCurrentSession();
-        if (u.getId() != null) {
-            s.update(u);
+        
+        if (!user.getFile().isEmpty()){
+            try {
+                Map res = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+                user.setAvatar(res.get("secure_url").toString());
+            } catch (IOException ex) {
+                Logger.getLogger(UserRepositoryImplement.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+      
+        if (user.getId() != null) {
+            s.update(user);
         }
         else {
-            u.setPassword(passEncoder.encode(u.getPassword()));
-            s.save(u);
+            user.setPassword(passEncoder.encode(user.getPassword()));
+            s.save(user);
         }
     }
 

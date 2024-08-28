@@ -41,4 +41,12 @@
         <put-attribute name="title" value="Chi tiết đặt bãi đỗ xe" />
         <put-attribute name="content" value="/WEB-INF/pages/orderParkingDetails.jsp" />
     </definition>
+    <definition name="rating" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý đánh giá" />
+        <put-attribute name="content" value="/WEB-INF/pages/rating.jsp" />
+    </definition>
+    <definition name="ratingDetails" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết đánh giá" />
+        <put-attribute name="content" value="/WEB-INF/pages/ratingDetails.jsp" />
+    </definition>
 </tiles-definitions>

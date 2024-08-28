@@ -48,7 +48,6 @@ public class Rating implements Serializable {
     private Parking parkingId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonIgnore
     private User userId;
 
     public Rating() {

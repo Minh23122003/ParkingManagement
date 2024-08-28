@@ -18,4 +18,5 @@ public interface OrderParkingService {
     void deleteOrderParking(int id);
     OrderParking getOrderParkingById(int id);
     List<OrderParking> getOrder();
+    void addOrUpdate(OrderParking o);
 }
