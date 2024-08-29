@@ -7,6 +7,7 @@ package com.minh.service.implement;
 import com.minh.pojo.Comment;
 import com.minh.repository.CommentRepository;
 import com.minh.service.CommentService;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,21 @@ public class CommentServiceImplement implements CommentService{
     @Override
     public Comment getCommentById(int id) {
         return this.commentRepository.getCommentById(id);
+    }
+
+    @Override
+    public List<Comment> getComment() {
+        return this.commentRepository.getComment();
+    }
+
+    @Override
+    public void addOrUpdate(Comment c) {
+        this.commentRepository.addOrUpdate(c);
+    }
+
+    @Override
+    public void deleteComment(int id) {
+        this.commentRepository.deleteComment(id);
     }
     
 }

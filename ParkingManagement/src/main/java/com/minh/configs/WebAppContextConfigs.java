@@ -6,6 +6,7 @@ package com.minh.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.minh.formatters.OrderParkingFormatter;
 import com.minh.formatters.ParkingFormatter;
 import com.minh.formatters.StatusFormatter;
 import com.minh.formatters.UserFormatter;
@@ -100,5 +101,6 @@ public class WebAppContextConfigs implements WebMvcConfigurer {
         registry.addFormatter(new StatusFormatter());
         registry.addFormatter(new ParkingFormatter());
         registry.addFormatter(new UserFormatter());
+        registry.addFormatter(new OrderParkingFormatter());
     }
 }

@@ -5,6 +5,7 @@
 package com.minh.repository;
 
 import com.minh.pojo.Comment;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,4 +15,7 @@ import java.util.Map;
 public interface CommentRepository {
     Comment addOrUpdateComment(Map<String, String> params);
     Comment getCommentById(int id);
+    List<Comment> getComment();
+    void addOrUpdate(Comment c);
+    void deleteComment(int id);
 }

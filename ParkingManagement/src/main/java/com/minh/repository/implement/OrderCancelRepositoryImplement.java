@@ -9,9 +9,11 @@ import com.minh.repository.OrderCancelRepository;
 import com.minh.repository.OrderParkingRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -55,6 +57,31 @@ public class OrderCancelRepositoryImplement implements OrderCancelRepository{
     public OrderCancel getOrderCancelById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(OrderCancel.class, id);
+    }
+
+    @Override
+    public List<OrderCancel> getOrderCancel() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From OrderCancel");
+        return q.getResultList();
+    }
+
+    @Override
+    public void addOrUpdate(OrderCancel o) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (o.getId() != null) {
+            s.update(o);
+        }
+        else {
+            s.save(o);
+        }
+    }
+
+    @Override
+    public void deleteOrderCancel(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        OrderCancel o = this.getOrderCancelById(id);
+        s.delete(o);
     }
     
 }

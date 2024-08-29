@@ -8,6 +8,7 @@ import com.minh.pojo.Comment;
 import com.minh.repository.CommentRepository;
 import com.minh.repository.ParkingRepository;
 import com.minh.repository.UserRepository;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -65,6 +66,30 @@ public class CommentRepositoryImplement implements CommentRepository{
     public Comment getCommentById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Comment.class, id);
+    }
+
+    @Override
+    public List<Comment> getComment() {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("From Comment");
+        return q.getResultList();
+    }
+
+    @Override
+    public void addOrUpdate(Comment c) {
+        Session s = this.factory.getObject().getCurrentSession();
+        if (c.getId() != null) {
+            s.update(c);
+        } else {
+            s.save(c);
+        }
+    }
+
+    @Override
+    public void deleteComment(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Comment comment = this.getCommentById(id);
+        s.delete(comment);
     }
     
 }

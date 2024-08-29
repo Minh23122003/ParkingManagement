@@ -30,7 +30,6 @@ public class OrderParkingController {
     
     @GetMapping("/orderParking")
     public String createView(Model model) {
-        model.addAttribute("orderParking", this.orderService.getOrder());
         return "orderParking";
     }
     
@@ -51,12 +50,19 @@ public class OrderParkingController {
 //        if (rs.hasErrors())
 //            return "orderParkingDetails";
         
-        if (o.getCreatedDateTransient() != null)
+        if (o.getCreatedDateTransient().isEmpty())
             o.setCreatedDate(formatter.parse(o.getCreatedDateTransient()));
-        if (o.getStartTimeTransient() != null)
+        if (!o.getStartTimeTransient().isEmpty())
             o.setStartTime(formatter.parse(o.getStartTimeTransient()));
-        if (o.getEndTimeTransient() != null)
+        if (!o.getEndTimeTransient().isEmpty())
             o.setEndTime(formatter.parse(o.getEndTimeTransient()));
+        
+        if (o.getId() != null && o.getCreatedDateTransient() == null)
+            o.setCreatedDate(this.orderService.getOrderParkingById(o.getId()).getCreatedDate());
+        if (o.getId() != null && o.getStartTimeTransient()== null)
+            o.setStartTime(this.orderService.getOrderParkingById(o.getId()).getStartTime());
+        if (o.getId() != null && o.getEndTimeTransient()== null)
+            o.setEndTime(this.orderService.getOrderParkingById(o.getId()).getEndTime());
 
         try {
             this.orderService.addOrUpdate(o);

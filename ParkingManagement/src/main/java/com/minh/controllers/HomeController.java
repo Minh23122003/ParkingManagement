@@ -5,6 +5,7 @@
 package com.minh.controllers;
 
 import com.minh.pojo.Parking;
+import com.minh.service.OrderParkingService;
 import com.minh.service.ParkingService;
 import com.minh.service.StatusService;
 import com.minh.service.UserService;
@@ -30,12 +31,15 @@ public class HomeController {
     private StatusService statusService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderParkingService orderService;
     
     @ModelAttribute
     public void commAttrs(Model model) {
         model.addAttribute("status", statusService.getStatus());
         model.addAttribute("user", this.userService.getUser());
         model.addAttribute("getParking", this.parkingService.getParking());
+        model.addAttribute("orderParking", this.orderService.getOrder());
     }
     
     @RequestMapping("/")

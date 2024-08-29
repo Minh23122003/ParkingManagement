@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -71,6 +72,9 @@ public class OrderCancel implements Serializable {
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private OrderParking orderId;
+    
+    @Transient
+    private String dateTransient;
 
     public OrderCancel() {
     }
@@ -79,10 +83,14 @@ public class OrderCancel implements Serializable {
         this.id = id;
     }
 
-    public OrderCancel(Integer id, String reason, Date date) {
+    public OrderCancel(Integer id, String reason, Date date, String status, String accountNumber, String bankName, OrderParking orderId) {
         this.id = id;
         this.reason = reason;
         this.date = date;
+        this.status = status;
+        this.accountNumber = accountNumber;
+        this.bankName = bankName;
+        this.orderId = orderId;
     }
 
     public Integer getId() {
@@ -182,6 +190,20 @@ public class OrderCancel implements Serializable {
      */
     public void setBankName(String bankName) {
         this.bankName = bankName;
+    }
+
+    /**
+     * @return the dateTransient
+     */
+    public String getDateTransient() {
+        return dateTransient;
+    }
+
+    /**
+     * @param dateTransient the dateTransient to set
+     */
+    public void setDateTransient(String dateTransient) {
+        this.dateTransient = dateTransient;
     }
     
 }

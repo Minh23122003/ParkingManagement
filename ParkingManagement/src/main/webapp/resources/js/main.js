@@ -59,4 +59,30 @@ function deleteRating(endpoint, ratingId) {
     }
 }
 
+function deleteComment(endpoint, commentId) {
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(endpoint, {
+            method: "delete"
+        }).then(res => {
+            if (res.status === 204) {
+                let d = document.getElementById(`comment${commentId}`);
+                d.style.display = "none";
+            } else
+                alert("Something Wrong!");
+        });
+    }
+}
 
+function deleteOrderCancel(endpoint, orderCancelId) {
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(endpoint, {
+            method: "delete"
+        }).then(res => {
+            if (res.status === 204) {
+                let d = document.getElementById(`orderCancel${orderCancelId}`);
+                d.style.display = "none";
+            } else
+                alert("Something Wrong!");
+        });
+    }
+}

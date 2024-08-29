@@ -49,4 +49,20 @@
         <put-attribute name="title" value="Chi tiết đánh giá" />
         <put-attribute name="content" value="/WEB-INF/pages/ratingDetails.jsp" />
     </definition>
+    <definition name="comment" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý nhận xét" />
+        <put-attribute name="content" value="/WEB-INF/pages/comment.jsp" />
+    </definition>
+    <definition name="commentDetails" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết nhận xét" />
+        <put-attribute name="content" value="/WEB-INF/pages/commentDetails.jsp" />
+    </definition>
+    <definition name="orderCancel" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý hủy đơn" />
+        <put-attribute name="content" value="/WEB-INF/pages/orderCancel.jsp" />
+    </definition>
+    <definition name="orderCancelDetails" extends="baseLayout">
+        <put-attribute name="title" value="Chi tiết hủy đơn" />
+        <put-attribute name="content" value="/WEB-INF/pages/orderCancelDetails.jsp" />
+    </definition>
 </tiles-definitions>

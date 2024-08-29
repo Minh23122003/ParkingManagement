@@ -5,6 +5,7 @@
 package com.minh.repository;
 
 import com.minh.pojo.OrderCancel;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,4 +15,7 @@ import java.util.Map;
 public interface OrderCancelRepository {
     OrderCancel addOrderCancel(Map<String, String> params);
     OrderCancel getOrderCancelById(int id);
+    List<OrderCancel> getOrderCancel();
+    void addOrUpdate(OrderCancel o);
+    void deleteOrderCancel(int id);
 }
