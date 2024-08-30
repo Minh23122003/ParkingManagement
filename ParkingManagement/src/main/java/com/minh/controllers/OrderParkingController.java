@@ -50,18 +50,18 @@ public class OrderParkingController {
 //        if (rs.hasErrors())
 //            return "orderParkingDetails";
         
-        if (o.getCreatedDateTransient().isEmpty())
+        if (o.getCreatedDateTransient() != "")
             o.setCreatedDate(formatter.parse(o.getCreatedDateTransient()));
-        if (!o.getStartTimeTransient().isEmpty())
+        if (o.getStartTimeTransient() != "")
             o.setStartTime(formatter.parse(o.getStartTimeTransient()));
-        if (!o.getEndTimeTransient().isEmpty())
+        if (o.getEndTimeTransient() != "")
             o.setEndTime(formatter.parse(o.getEndTimeTransient()));
         
-        if (o.getId() != null && o.getCreatedDateTransient() == null)
+        if (o.getId() != null && o.getCreatedDateTransient() == "")
             o.setCreatedDate(this.orderService.getOrderParkingById(o.getId()).getCreatedDate());
-        if (o.getId() != null && o.getStartTimeTransient()== null)
+        if (o.getId() != null && o.getStartTimeTransient()== "")
             o.setStartTime(this.orderService.getOrderParkingById(o.getId()).getStartTime());
-        if (o.getId() != null && o.getEndTimeTransient()== null)
+        if (o.getId() != null && o.getEndTimeTransient()== "")
             o.setEndTime(this.orderService.getOrderParkingById(o.getId()).getEndTime());
 
         try {

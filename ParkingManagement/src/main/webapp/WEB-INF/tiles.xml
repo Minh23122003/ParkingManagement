@@ -13,56 +13,60 @@
         <put-attribute name="title" value="Trang chủ" />
         <put-attribute name="content" value="/WEB-INF/pages/index.jsp" />
     </definition>
-    <definition name="parkings" extends="baseLayout">
-        <put-attribute name="title" value="Quản trị bãi đỗ xe" />
-        <put-attribute name="content" value="/WEB-INF/pages/parkings.jsp" />
+    <definition name="parking" extends="baseLayout">
+        <put-attribute name="title" value="Parking Management" />
+        <put-attribute name="content" value="/WEB-INF/pages/parking.jsp" />
+    </definition>
+    <definition name="parkingDetails" extends="baseLayout">
+        <put-attribute name="title" value="Parking Details" />
+        <put-attribute name="content" value="/WEB-INF/pages/parkingDetails.jsp" />
     </definition>
     <definition name="status" extends="baseLayout">
-        <put-attribute name="title" value="Quản trị trạng thái" />
+        <put-attribute name="title" value="Status Management" />
         <put-attribute name="content" value="/WEB-INF/pages/status.jsp" />
     </definition>
     <definition name="statusDetails" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết trạng thái" />
+        <put-attribute name="title" value="Status Details" />
         <put-attribute name="content" value="/WEB-INF/pages/statusDetails.jsp" />
     </definition>
     <definition name="user" extends="baseLayout">
-        <put-attribute name="title" value="Quản trị user" />
+        <put-attribute name="title" value="User Management" />
         <put-attribute name="content" value="/WEB-INF/pages/user.jsp" />
     </definition>
     <definition name="userDetails" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết user" />
+        <put-attribute name="title" value="User Details" />
         <put-attribute name="content" value="/WEB-INF/pages/userDetails.jsp" />
     </definition>
     <definition name="orderParking" extends="baseLayout">
-        <put-attribute name="title" value="Quản lý đặt bãi đỗ xe" />
+        <put-attribute name="title" value="Order Parking Management" />
         <put-attribute name="content" value="/WEB-INF/pages/orderParking.jsp" />
     </definition>
     <definition name="orderParkingDetails" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết đặt bãi đỗ xe" />
+        <put-attribute name="title" value="Order Parking Details" />
         <put-attribute name="content" value="/WEB-INF/pages/orderParkingDetails.jsp" />
     </definition>
     <definition name="rating" extends="baseLayout">
-        <put-attribute name="title" value="Quản lý đánh giá" />
+        <put-attribute name="title" value="Rating Management" />
         <put-attribute name="content" value="/WEB-INF/pages/rating.jsp" />
     </definition>
     <definition name="ratingDetails" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết đánh giá" />
+        <put-attribute name="title" value="Rating Details" />
         <put-attribute name="content" value="/WEB-INF/pages/ratingDetails.jsp" />
     </definition>
     <definition name="comment" extends="baseLayout">
-        <put-attribute name="title" value="Quản lý nhận xét" />
+        <put-attribute name="title" value="Comment Management" />
         <put-attribute name="content" value="/WEB-INF/pages/comment.jsp" />
     </definition>
     <definition name="commentDetails" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết nhận xét" />
+        <put-attribute name="title" value="Comment Details" />
         <put-attribute name="content" value="/WEB-INF/pages/commentDetails.jsp" />
     </definition>
     <definition name="orderCancel" extends="baseLayout">
-        <put-attribute name="title" value="Quản lý hủy đơn" />
+        <put-attribute name="title" value="Order Cancel Management" />
         <put-attribute name="content" value="/WEB-INF/pages/orderCancel.jsp" />
     </definition>
     <definition name="orderCancelDetails" extends="baseLayout">
-        <put-attribute name="title" value="Chi tiết hủy đơn" />
+        <put-attribute name="title" value="Order Cancel Details" />
         <put-attribute name="content" value="/WEB-INF/pages/orderCancelDetails.jsp" />
     </definition>
 </tiles-definitions>

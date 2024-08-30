@@ -40,13 +40,14 @@ public class HomeController {
         model.addAttribute("user", this.userService.getUser());
         model.addAttribute("getParking", this.parkingService.getParking());
         model.addAttribute("orderParking", this.orderService.getOrder());
+        model.addAttribute("parking", this.parkingService.getParking());
     }
     
     @RequestMapping("/")
     public String index(Model model, @RequestParam Map<String, String> params) {
         
         
-        model.addAttribute("parkings", this.parkingService.getParkings(params));
+//        model.addAttribute("parkings", this.parkingService.getParkings(params));
         
         return "home";
     }

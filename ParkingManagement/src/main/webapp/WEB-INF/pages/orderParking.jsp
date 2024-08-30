@@ -8,21 +8,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<h1>Quản trị đặt bãi đỗ xe</h1>
+<h1>Order Parking Management</h1>
 
 <div class="col-md-10 col-12">
-    <a class="btn btn-info m-1" href="<c:url value="/orderParking/add" />">Đặt bãi đỗ xe</a>
+    <a class="btn btn-info m-1" href="<c:url value="/orderParking/add" />">Add order parking</a>
 <table class="table table-striped">
     <tr>
         <th>Id</th>
-        <th>Tên phương tiện</th>
-        <th>Biển số xe</th>
-        <th>Ngày tạo</th>
-        <th>Trạng thái</th>
-        <th>Ngày bắt đầu</th>
-        <th>Ngày kết thúc</th>
-        <th>Tổng tiền</th>
-        <th>Id bãi đỗ xe</th>
+        <th>Vehicle Name</th>
+        <th>License Plates</th>
+        <th>Created Date</th>
+        <th>Status</th>
+        <th>Start time</th>
+        <th>End time</th>
+        <th>Total</th>
+        <th>Id parking</th>
         <th>Id user</th>
         <th></th>
     </tr>
@@ -42,7 +42,7 @@
                 <c:url value="/orderParking/${o.id}/update" var="u" />
                 <a href="${u}" class="btn btn-success m-1">&orarr;</a>
 
-                <c:url value="/api/orderParking/${s.id}" var="uD" />
+                <c:url value="/api/orderParking/${o.id}" var="uD" />
                 <button onclick="deleteOrderParking('${uD}', ${o.id})" class="btn btn-danger m-1">&times;</button>
             </td>
         </tr>

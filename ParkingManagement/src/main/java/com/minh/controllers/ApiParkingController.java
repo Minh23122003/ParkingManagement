@@ -31,7 +31,7 @@ public class ApiParkingController {
     @Autowired
     private ParkingService parkingService;
     
-    @DeleteMapping("/parkings/{parkingId}")
+    @DeleteMapping("/parking/{parkingId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "parkingId") int id) {
         this.parkingService.deleteParking(id);

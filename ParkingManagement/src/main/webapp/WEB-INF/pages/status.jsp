@@ -8,14 +8,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<h1>Quản trị trạng thái</h1>
+<h1>Status Management</h1>
 
 <div class="col-md-10 col-12">
-    <a class="btn btn-info m-1" href="<c:url value="/status/add" />">Thêm trạng thái</a>
+    <a class="btn btn-info m-1" href="<c:url value="/status/add" />">Add status</a>
 <table class="table table-striped">
     <tr>
         <th>Id</th>
-        <th>Tên trạng thái</th>
+        <th>Name</th>
         <th></th>
     </tr>
     <c:forEach items="${status}" var="s">

@@ -13,11 +13,11 @@
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="userDetails">
     <form:errors path="*" element="div" cssClass="text-danger"/>
     <div class="mb-3 mt-3">
-        <label for="firstName" class="form-label">Họ:</label>
+        <label for="firstName" class="form-label">First name</label>
         <form:input path="firstName" type="text" class="form-control" id="firstName" placeholder="" name="firstName" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="lastName" class="form-label">Tên:</label>
+        <label for="lastName" class="form-label">Last name:</label>
         <form:input path="lastName" type="text" class="form-control" id="lastName" placeholder="" name="lastName" />      
     </div>
     <div class="mb-3 mt-3">
@@ -25,19 +25,19 @@
         <form:input path="email" type="text" class="form-control" id="email" placeholder="" name="email" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="phone" class="form-label">Số điện thoại:</label>
+        <label for="phone" class="form-label">Phone:</label>
         <form:input path="phone" type="text" class="form-control" id="phone" placeholder="" name="phone" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="username" class="form-label">Tên tài khoản:</label>
+        <label for="username" class="form-label">Username:</label>
         <form:input path="username" type="text" class="form-control" id="username" placeholder="" name="username" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="password" class="form-label">Mật khẩu:</label>
+        <label for="password" class="form-label">Password:</label>
         <form:input path="password" type="text" class="form-control" id="password" placeholder="" name="password" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="userRole" class="form-label">Vai trò:</label>
+        <label for="userRole" class="form-label">Role:</label>
         <form:select class="form-select" path="userRole">
             <c:if test="${userDetails.userRole == \"ROLE_ADMIN\"}">
                 <option value="ROLE_USER">ROLE_USER</option>
@@ -66,10 +66,10 @@
         <button class="btn btn-success" type="submit">          
             <c:choose>
                 <c:when test="${userDetails.id != null}">
-                    <option selected>Cập nhật user</option>
+                    <option selected>Update</option>
                 </c:when>
                 <c:otherwise>
-                    Thêm user
+                    Add
                 </c:otherwise>
             </c:choose>
         </button>

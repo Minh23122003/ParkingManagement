@@ -51,9 +51,9 @@ public class OrderCancelController {
 //        if (rs.hasErrors())
 //            return "orderParkingDetails";
         
-        if (o.getDateTransient()!= null)
+        if (o.getDateTransient()!= "")
             o.setDate(formatter.parse(o.getDateTransient()));
-        if (o.getId() != null && o.getDateTransient()== null){
+        if (o.getId() != null && o.getDateTransient()== ""){
             o.setDate(this.orderService.getOrderCancelById(o.getId()).getDate());
         }
 

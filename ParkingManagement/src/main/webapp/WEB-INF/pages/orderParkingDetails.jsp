@@ -13,19 +13,19 @@
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="orderParkingDetails">
     <form:errors path="*" element="div" cssClass="text-danger"/>
     <div class="mb-3 mt-3">
-        <label for="vehicleName" class="form-label">Tên phương tiện:</label>
+        <label for="vehicleName" class="form-label">Vehicle name:</label>
         <form:input path="vehicleName" type="text" class="form-control" id="vehicleName" placeholder="" name="vehicleName" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="licensePlates" class="form-label">Biển số xe:</label>
+        <label for="licensePlates" class="form-label">License plates:</label>
         <form:input path="licensePlates" type="text" class="form-control" id="licensePlates" placeholder="" name="licensePlates" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="createdDateTransient" class="form-label">Ngày đặt:</label>
+        <label for="createdDateTransient" class="form-label">Created date:</label>
         <form:input path="createdDateTransient" type="date" class="form-control" id="createdDateTransient" placeholder="" name="createdDateTransient" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="status" class="form-label">Trạng thái:</label>
+        <label for="status" class="form-label">Status:</label>
         <form:select class="form-select" path="status">
             <c:if test="${orderParkingDetails.status == \"Chưa thanh toán\"}">
                 <option value="Đã thanh toán">Đã thanh toán</option>
@@ -42,19 +42,19 @@
         </form:select>  
     </div>
     <div class="mb-3 mt-3">
-        <label for="startTimeTransient" class="form-label">Ngày bắt đầu:</label>
+        <label for="startTimeTransient" class="form-label">Start time:</label>
         <form:input path="startTimeTransient" type="date" class="form-control" id="startTimeTransient" placeholder="" name="startTimeTransient" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="endTimeTransient" class="form-label">Ngày kết thúc:</label>
+        <label for="endTimeTransient" class="form-label">End time:</label>
         <form:input path="endTimeTransient" type="date" class="form-control" id="endTimeTransient" placeholder="" name="endTimeTransient" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="total" class="form-label">Tổng tiền:</label>
+        <label for="total" class="form-label">Total:</label>
         <form:input path="total" type="number" class="form-control" id="total" placeholder="" name="total" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="browser" class="form-label">Bãi đỗ xe:</label>
+        <label for="browser" class="form-label">Parking:</label>
         <form:select class="form-select" path="parkingId" >
             <c:forEach items="${getParking}" var="p">
                 <c:choose>
@@ -88,10 +88,10 @@
         <button class="btn btn-success" type="submit">          
             <c:choose>
                 <c:when test="${orderParkingDetails.id != null}">
-                    <option selected>Cập nhật</option>
+                    <option selected>Update</option>
                 </c:when>
                 <c:otherwise>
-                    Thêm
+                    Add
                 </c:otherwise>
             </c:choose>
         </button>

@@ -13,7 +13,7 @@
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="statusDetails">
     <form:errors path="*" element="div" cssClass="text-danger"/>
     <div class="mb-3 mt-3">
-        <label for="name" class="form-label">Tên trạng thái:</label>
+        <label for="name" class="form-label">Name:</label>
         <form:input path="name" type="text" class="form-control" id="name" placeholder="" name="name" />      
     </div>
     <div class="mb-3 mt-3">
@@ -21,10 +21,10 @@
         <button class="btn btn-success" type="submit">          
             <c:choose>
                 <c:when test="${statusDetails.id != null}">
-                    <option selected>Cập nhật trạng thái</option>
+                    <option selected>Update</option>
                 </c:when>
                 <c:otherwise>
-                    Thêm trạng thái
+                    Add
                 </c:otherwise>
             </c:choose>
         </button>

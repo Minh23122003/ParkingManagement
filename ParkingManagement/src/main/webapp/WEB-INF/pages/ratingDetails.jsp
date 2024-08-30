@@ -13,11 +13,11 @@
 <form:form method="post" enctype="multipart/form-data" action="${action}" modelAttribute="ratingDetails">
     <form:errors path="*" element="div" cssClass="text-danger"/>
     <div class="mb-3 mt-3">
-        <label for="stars" class="form-label">Số ngôi sao:</label>
+        <label for="stars" class="form-label">Stars:</label>
         <form:input path="stars" type="text" class="form-control" id="stars" placeholder="" name="stars" />      
     </div>
     <div class="mb-3 mt-3">
-        <label for="browser" class="form-label">Bãi đỗ xe:</label>
+        <label for="browser" class="form-label">Parking:</label>
         <form:select class="form-select" path="parkingId" >
             <c:forEach items="${getParking}" var="p">
                 <c:choose>
@@ -51,10 +51,10 @@
         <button class="btn btn-success" type="submit">          
             <c:choose>
                 <c:when test="${ratingDetails.id != null}">
-                    <option selected>Cập nhật</option>
+                    <option selected>Update</option>
                 </c:when>
                 <c:otherwise>
-                    Thêm
+                    Add
                 </c:otherwise>
             </c:choose>
         </button>

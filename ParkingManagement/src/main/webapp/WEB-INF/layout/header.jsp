@@ -17,28 +17,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/" />">Trang chủ</a>
+                    <a class="nav-link" href="<c:url value="/" />">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/status" />">Status</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/user" />">User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/orderParking" />">OrderParking</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/rating" />">Rating</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/comment" />">Comment</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/orderCancel" />">Order Cancel</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<c:url value="/stats" />">Thống kê</a>
+                    <a class="nav-link" href="<c:url value="/stats" />">Statistics</a>
                 </li>
                 <s:authorize access="hasAnyRole('USER', 'ADMIN')">
                     <li class="nav-item">
@@ -48,7 +30,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-danger" href="<c:url value="/logout" />">
-                           Đăng xuất
+                           Log out
                         </a>
                     </li>
                 </s:authorize>

@@ -25,33 +25,37 @@ public class ParkingController {
     @Autowired
     private ParkingService parkingService;
     
-    @GetMapping("/parkings")
+    @GetMapping("/parking")
     public String createView(Model model) {
-        model.addAttribute("parking", new Parking());
-        return "parkings";
+        return "parking";
     }
     
-    @PostMapping("/parkings")
-    public String createView(Model model, @ModelAttribute(value = "parking") @Valid Parking p, BindingResult rs) {
+    @PostMapping("/parking")
+    public String createView(Model model, @ModelAttribute(value = "parkingDetails") @Valid Parking p, BindingResult rs) {
         if (rs.hasErrors()){
-            return "parkings";
+            return "parkingDetails";
         }
             
-        
         try {
             this.parkingService.addOrUpdate(p);
             
-            return "redirect:/";
+            return "redirect:/parking";
         } catch (Exception ex) {
-            model.addAttribute("errMsg", "sai");
+            model.addAttribute("errMsg", ex);
         }
         
-        return "parkings";
+        return "parkingDetails";
     }
     
-    @GetMapping("/parkings/{parkingId}")
+    @GetMapping("/parking/{parkingId}/update")
     public String detailsView(Model model, @PathVariable(value = "parkingId") int id){
-        model.addAttribute("parking", this.parkingService.getParkingById(id));
-        return "parkings";
+        model.addAttribute("parkingDetails", this.parkingService.getParkingById(id));
+        return "parkingDetails";
+    }
+    
+    @GetMapping("/parking/add")
+    public String addView(Model model){
+        model.addAttribute("parkingDetails", new Parking());
+        return "parkingDetails";
     }
 }

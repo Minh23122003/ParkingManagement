@@ -8,10 +8,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<h1>Quản trị user</h1>
+<h1>User Management</h1>
 
 <div class="col-md-10 col-12">
-    <a class="btn btn-info m-1" href="<c:url value="/user/add" />">Thêm user</a>
+    <a class="btn btn-info m-1" href="<c:url value="/user/add" />">Add user</a>
 <table class="table table-striped">
     <tr>
         <th>Id</th>

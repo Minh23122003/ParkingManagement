@@ -45,6 +45,20 @@ function deleteUser(endpoint, userId) {
     }
 }
 
+function deleteOrderParking(endpoint, orderParkingId) {
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(endpoint, {
+            method: "delete"
+        }).then(res => {
+            if (res.status === 204) {
+                let d = document.getElementById(`orderParking${orderParkingId}`);
+                d.style.display = "none";
+            } else
+                alert("Something Wrong!");
+        });
+    }
+}
+
 function deleteRating(endpoint, ratingId) {
     if (confirm("Bạn chắc chắn xóa không?") === true) {
         fetch(endpoint, {
