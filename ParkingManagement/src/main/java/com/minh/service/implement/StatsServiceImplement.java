@@ -23,5 +23,25 @@ public class StatsServiceImplement implements StatsService{
     public List<Object[]> statsRevenueByParking() {
         return this.statsRepo.statsRevenueByParking();
     }
+
+    @Override
+    public List<Object[]> statsRevenueByUser() {
+        return this.statsRepo.statsRevenueByUser();
+    }
+
+    @Override
+    public List<Object[]> statsRenenueByMonth(int month, int year) {
+        return this.statsRepo.statsRenenueByMonth(month, year);
+    }
+
+    @Override
+    public List<Object[]> statsRevenueByYear(int id) {
+        return this.statsRepo.statsRevenueByYear(id);
+    }
+
+    @Override
+    public List<Object[]> statsRevenueByPeriod(String startTime, String endTime) {
+        return this.statsRepo.statsRevenueByPeriod(startTime, endTime);
+    }
     
 }

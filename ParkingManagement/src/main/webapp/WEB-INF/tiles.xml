@@ -69,8 +69,36 @@
         <put-attribute name="title" value="Order Cancel Details" />
         <put-attribute name="content" value="/WEB-INF/pages/orderCancelDetails.jsp" />
     </definition>
+    <definition name="orderDetail" extends="baseLayout">
+        <put-attribute name="title" value="Order Detail Management" />
+        <put-attribute name="content" value="/WEB-INF/pages/orderDetail.jsp" />
+    </definition>
+    <definition name="orderDetailDetails" extends="baseLayout">
+        <put-attribute name="title" value="Order Detail Details" />
+        <put-attribute name="content" value="/WEB-INF/pages/orderDetailDetails.jsp" />
+    </definition>
     <definition name="stats" extends="baseLayout">
         <put-attribute name="title" value="Statistics" />
         <put-attribute name="content" value="/WEB-INF/pages/stats.jsp" />
+    </definition>
+    <definition name="statsByParking" extends="baseLayout">
+        <put-attribute name="title" value="Statistics by parking" />
+        <put-attribute name="content" value="/WEB-INF/pages/statsByParking.jsp" />
+    </definition>
+    <definition name="statsByUser" extends="baseLayout">
+        <put-attribute name="title" value="Statistics by user" />
+        <put-attribute name="content" value="/WEB-INF/pages/statsByUser.jsp" />
+    </definition>
+    <definition name="statsByMonth" extends="baseLayout">
+        <put-attribute name="title" value="Statistics by month" />
+        <put-attribute name="content" value="/WEB-INF/pages/statsByMonth.jsp" />
+    </definition>
+    <definition name="statsByYear" extends="baseLayout">
+        <put-attribute name="title" value="Statistics by year" />
+        <put-attribute name="content" value="/WEB-INF/pages/statsByYear.jsp" />
+    </definition>
+    <definition name="statsByPeriod" extends="baseLayout">
+        <put-attribute name="title" value="Statistics by period" />
+        <put-attribute name="content" value="/WEB-INF/pages/statsByPeriod.jsp" />
     </definition>
 </tiles-definitions>

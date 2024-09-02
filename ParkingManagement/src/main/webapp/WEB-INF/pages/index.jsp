@@ -14,3 +14,4 @@
 <a class="btn btn-info m-3" href="<c:url value="/rating" />">Rating</a>
 <a class="btn btn-info m-3" href="<c:url value="/comment" />">Comment</a>
 <a class="btn btn-info m-3" href="<c:url value="/orderCancel" />">Order Cancel</a>
+<a class="btn btn-info m-3" href="<c:url value="/orderDetail" />">Order Detail</a>

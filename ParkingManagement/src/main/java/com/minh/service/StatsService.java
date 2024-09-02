@@ -12,4 +12,8 @@ import java.util.List;
  */
 public interface StatsService {
     List<Object[]> statsRevenueByParking();
+    List<Object[]> statsRevenueByUser();
+    List<Object[]> statsRenenueByMonth(int month, int year);
+    List<Object[]> statsRevenueByYear(int year);
+    List<Object[]> statsRevenueByPeriod(String startTime, String endTime);
 }
