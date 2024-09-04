@@ -17,6 +17,7 @@ import Profile from './components/Profile';
 import Rating from './components/Rating';
 import Comment from './components/Comment';
 import OrderCancel from './components/orderCancel';
+import ChangeProfile from './components/changeProfile';
 
 export const MyUserContext = createContext();
 export const MyDispatchContext = createContext();
@@ -43,6 +44,7 @@ const App = () => {
                 <Route path='/rating' element={<Rating />} />
                 <Route path='/comment' element={<Comment />} />
                 <Route path='/orderCancel' element={<OrderCancel />} />
+                <Route path='/changeProfile' element={<ChangeProfile />} />
               </Routes>
             </Container>
             <Footer />

@@ -107,4 +107,12 @@ public class UserRepositoryImplement implements UserRepository {
         }
     }
 
+    @Override
+    public User updateUser(User user) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.update(user);
+        
+        return user;
+    }
+
 }

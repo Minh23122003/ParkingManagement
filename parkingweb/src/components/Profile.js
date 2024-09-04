@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Image } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import cookie from "react-cookies";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
 
@@ -16,6 +17,7 @@ const Profile = () => {
         <h1>Email: {user.email}</h1>
         <h1>Số điện thoại: {user.phone}</h1>
         <Image src={user.avatar} width="500" />
+        <div className="m-3"><Button><Link className="nav-link" to="/changeProfile" >Thay đổi thông tin tài khoản</Link></Button></div>
         </>
     )
 }

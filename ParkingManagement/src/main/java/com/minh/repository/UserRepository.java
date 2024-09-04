@@ -7,6 +7,7 @@ package com.minh.repository;
 import com.minh.pojo.User;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -20,4 +21,5 @@ public interface UserRepository {
     User getUserById(int id);
     void deleteUser(int id);
     void addOrUpdate(User user);
+    User updateUser(User user);
 }

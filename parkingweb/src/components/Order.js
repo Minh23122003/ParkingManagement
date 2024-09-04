@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import cookie, { load } from "react-cookies";
 import APIs, { endpoints } from "../configs/APIs";
 import { MyUserContext } from "../App";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 const Order = () => {
     const [parking, setParking] = useState(cookie.load("parking"))
@@ -12,6 +12,7 @@ const Order = () => {
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const user = useContext(MyUserContext)
+    const nav = useNavigate()
     
     useEffect(() => {
     }, [parking])
@@ -52,8 +53,10 @@ const Order = () => {
                     "endTime": endTime,
                     "total": total
                 })
-                if (res.status===201)
+                if (res.status===201) {
                     alert("Đặt chỗ thành công")
+                    nav('/')
+                }
             }catch(ex) {
                 console.error(ex)
             }

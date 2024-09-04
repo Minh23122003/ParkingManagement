@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController
 @RequestMapping("/api")
+@CrossOrigin
 public class ApiUserController {
 
     @Autowired
@@ -40,7 +41,6 @@ public class ApiUserController {
     private UserService userService;
 
     @PostMapping("/login")
-    @CrossOrigin
     public ResponseEntity<String> login(@RequestBody User user) {
         if (this.userService.authUser(user.getUsername(), user.getPassword()) == true) {
             String token = this.jwtService.generateTokenLogin(user.getUsername());
@@ -54,14 +54,12 @@ public class ApiUserController {
     @PostMapping(path = "/users",
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    @CrossOrigin
     public ResponseEntity<User> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
         User user = this.userService.addUser(params, avatar);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @GetMapping(path = "/current-user", produces = MediaType.APPLICATION_JSON_VALUE)
-    @CrossOrigin
     public ResponseEntity<User> details(Principal user) {
         User u = this.userService.getUserByUsername(user.getName());    
         return new ResponseEntity<>(u, HttpStatus.OK);
@@ -71,5 +69,11 @@ public class ApiUserController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "userId") int id) {
         this.userService.deleteUser(id);
+    }
+    
+    @PostMapping(path="/updateUser", produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<User> updateUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
+        User user = this.userService.updateUser(params, avatar);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

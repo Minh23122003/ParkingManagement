@@ -73,6 +73,7 @@ public class OrderParkingRepositoryImplement implements OrderParkingRepository{
         String userId = params.get("userId");
         if(userId != null)
             q.where(b.equal(root.get("userId"), Integer.parseInt(userId)));
+        q.orderBy(b.desc(root.get("id")));
         Query query = s.createQuery(q);
         return query.getResultList();
     }

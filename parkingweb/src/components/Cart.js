@@ -27,7 +27,7 @@ const Cart = () => {
         loadOrder()
     }, [quantity])
 
-    const confirm = async (id) => {
+    const confirmDelete = async (id) => {
         if(window.confirm("Bạn chắc chắn muốn xóa?") === true){
             try {
                 let res = await APIs.delete(endpoints['deleteOrderParking'](id))
@@ -39,8 +39,33 @@ const Cart = () => {
         }
     }
 
+    const confirmPay = async () => {
+        console.info(new Date().toLocaleDateString())
+        var listOrder = []
+        for (let o of order)
+            if(o.status === "Chưa thanh toán")
+                listOrder.push(o.id)
+        if (listOrder.length === 0) {
+            alert("Bạn không có yêu cầu cần thanh toán")
+        } else if(window.confirm("Bạn chắc chắn thanh toán?") === true) {
+            try {
+                let res = await APIs.post(endpoints['pay'], {
+                    "listOrder": JSON.stringify(listOrder),
+                    "date": new Date().toLocaleDateString()
+                })
+                if (res.status === 200) {
+                    setQuantity(0)
+                    alert("Thanh toán thành công")
+                }
+            }catch (ex) {
+                console.error(ex)
+            }
+        }
+    }
+
     return (<>
     <h1>Danh sách các bãi giữ xe đã đặt</h1>
+    <Button onClick={() => confirmPay()} className="m-3">Thanh toán</Button>
     <Table striped bordered hover>
         <thead>
             <tr>
@@ -68,7 +93,7 @@ const Cart = () => {
                 <th>{new Date(o.endTime).toLocaleDateString()}</th>
                 <th>{o.parkingId.address}</th>
                 <th>{o.total}</th>
-                <th>{o.status === "Chưa thanh toán"?<><Button onClick={() => confirm(o.id)} variant="danger">&times;</Button></>:<></>}</th>
+                <th>{o.status === "Chưa thanh toán"?<><Button onClick={() => confirmDelete(o.id)} variant="danger">&times;</Button></>:<></>}</th>
                 <th></th>
                 {o.status === "Đã thanh toán" && new Date() > new Date(o.endTime)?<th><Button><Link onClick={()=> cookie.save("order", o)} className="nav-link" to="/rating">Đánh giá</Link></Button></th>:<th></th>}
                 {o.status === "Đã thanh toán" && new Date() > new Date(o.endTime)?<th><Button><Link onClick={()=> cookie.save("order", o)} className="nav-link" to="/comment">Nhận xét</Link></Button></th>:<th></th>}

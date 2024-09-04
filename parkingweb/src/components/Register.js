@@ -53,7 +53,7 @@ const Register = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput21">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" placeholder="Email..." value={user["email"]} onChange={e => change(e, "email")}   />
+                    <Form.Control type="email" placeholder="Email..." value={user["email"]} onChange={e => change(e, "email")}   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput22">
                     <Form.Label>Phone</Form.Label>

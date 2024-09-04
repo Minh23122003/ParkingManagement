@@ -15,6 +15,8 @@ export const endpoints = {
     'addComment': '/comment',
     'addRating': '/rating',
     'addOrderCancel': '/orderCancel',
+    'pay': '/pay',
+    'updateUser': '/updateUser',
 }
 
 export const authAPIs = () => {
